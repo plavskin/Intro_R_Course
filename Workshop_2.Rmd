@@ -1,12 +1,13 @@
 ---
-title: |
-  | NYU SURP 2019 R course
-  | Class 2: Basics of programming: variables and functions
+title: "Intro R Course, Workshop 2: Variables, Types, and Functions"
+subtitle: |
+    |   - variables
+    |   - types
+    |   - basic functions
 author:
 - Eugene Plavskin
 - Grace Avecilla
 - Tobi Schraink
-date: "06/25/2019"
 output:
   html_notebook:
     code_folding: show
@@ -14,35 +15,6 @@ output:
     tidy: yes
     toc: yes
 ---
-# The power of google
-
-Last class, you saw that R can be used as a fancy calculator. 
-```{r}
-3+4
-```
-
-Let's use R to do some more math.
-
-In most programming languages, division is written using the slash ( __/__ ), and multiplication using the asterisk ( * )
-```{r}
-# Try multiplying 8 by 7
-
-# Try dividing 4589 by 124
-
-```
-
-One of the *most* important skills in programming is knowing how to find information. No amount of experience will teach you how to do *everything*, and it's incredibly easy to forget how to do things that you've done many times before but haven't had to use in a while. Fortunately, we have google!
-
-Try searching online to find out how to do the exercises in the code chunk below:
-```{r}
-# Take 3 to the 5th power
-
-# Find the remainder when 8 is divided by 3
-
-```
-
-You may have seen some answers on a website called *StackOverflow*. This is a great site that allows people to ask questions and they are answered by members of the R community. In most cases, there was already someone who had your question at some point, which is why a clever google search can usually help you figure out how to do most things. There are also a ton of blogs online that teach you specific skills in R.
-
 # Variables
 ## Variables hold information
 Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
@@ -117,6 +89,12 @@ variable2
 sum(variable1, variable2)
 ```
 
+`sum()` can also take more than two inputs!
+```{r}
+# Try using the sum function to compute the sum of 3, 4, and 6
+
+```
+
 Functions are their own type! You can try using `is()` to check this:
 ```{r}
 is(sum)
@@ -136,10 +114,11 @@ Check out the **Environment** window on the top right! You can actually also see
 ## Combining strings
 Another really useful function is the `paste` function; this function allows you to combine *strings*.
 ```{r}
-research_program <- 'SURP'
-year <- '2019'
+favorite_subject <- 'biology'
+statement_about_subject <- 'is #'
+subject_rank <- '1'
 
-current_program <- paste(research_program, year)
+biology_quality <- paste(favorite_subject, statement_about_subject, subject_rank)
 ```
 
 Notice that the code above didn't print anything out. That's because we directed the output of the `paste` function into a variable, *current_program*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
@@ -163,8 +142,8 @@ In practice, this information can sometimes be a bit dense and technical. I usua
 
 Notice that when we used paste above, the function automatically put a space between our two strings. It's often really useful to combine strings with a different character, for example, a dash. Try to read the documentation for `paste()` to figure out how to do this.
 ```{r}
-# Combine the research_program and year variables using just a dash between
-# them instead of a space
+# Combine only the favorite_subject, statement_about_subject, and subject_rank
+# variables, using a dash between them instead of a space
 
 ```
 
