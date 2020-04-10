@@ -9,7 +9,7 @@ This is an introductory R course intended for learners with no prior coding expe
 ## Table of Contents
 
 ```{r echo=FALSE, results='asis'}
-# this code from https://github.com/lmullen/rmd-notebook/blob/master/index.Rmd
+# this code based on https://github.com/lmullen/rmd-notebook/blob/master/index.Rmd
 # table of contents for rendered versions of every R Markdown document starting
 # with "Workshop" in this repository
 rmd <- Sys.glob("Workshop*.Rmd")
@@ -19,8 +19,11 @@ lines <- lapply(rmd, readLines)
 yaml <- lapply(lines, rmarkdown:::parse_yaml_front_matter)
 cat("<ul>")
 for (i in seq_along(rmd)) {
-  cat(paste0("<li><a href='", html[i], "'>", yaml[[i]]$title, "</a><br/>",
-             "</li>"))
+  current_title <- yaml[[i]]$title
+  current_subtitle_list <- strsplit(yaml[[i]]$subtitle, split = '|', fixed = T)
+  cat(paste0("<li><a href='", html[i], "'>", yaml[[i]]$title, "</a>"),
+      paste0(unlist(current_subtitle_list[2:length(current_subtitle_list)]),'<br/>'),
+      "</li>")
 }
 cat("</ul>")
 ```
