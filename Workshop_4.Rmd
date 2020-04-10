@@ -1,10 +1,10 @@
 ---
 title: "Intro R Course, Workshop 4: Missing values and Logical operations"
 subtitle: |
-    |   - Creating, storing, and working with missing values
-    |   - Logical (boolean) types
-    |   - Using logical types to select data of interest
-    |   - Operations with logical data types
+    |   - creating, storing, and working with missing values
+    |   - logical (boolean) types
+    |   - using logical types to select data of interest
+    |   - operations with logical data types
 author:
   - Eugene Plavskin
   - Grace Avecilla
