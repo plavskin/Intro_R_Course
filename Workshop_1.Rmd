@@ -1,11 +1,9 @@
 ---
-title: |
-  | NYU SURP 2019 R course
-  | Class 1: Introduction
+title: "Intro R Course, Workshop 1: Introduction"
 author:
 - Eugene Plavskin
 - Grace Avecilla
-date: "06/18/2019"
+date: ""
 output:
   html_notebook:
     code_folding: show
@@ -13,16 +11,8 @@ output:
     tidy: yes
     toc: yes
 ---
-
-```{r echo = F}
-# get Rstudio to figure out the directory in which this file is
-current_path <- dirname(rstudioapi::getSourceEditorContext()$path)
-current_fig_path <- file.path(current_path, 'class_1_figures')
-
-# install necessary packages and load libraries
+```{r echo=F}
 install.packages('knitr')
-install.packages('ggplot2')
-library(ggplot2)
 library(knitr)
 ```
 
@@ -31,7 +21,7 @@ library(knitr)
 In this series of workshops, we will be using the **R** programming language. In order to be able to complete the exercises in the workshops, you will need to download R onto your computer. You will also need to download RStudio, a programming environment that will make it easier to visualize what we are doing.
 
 ## Downloading R
-
+  
 R is available for **free** at
 [r-project.org](https://cran.rstudio.com).
 There's versions for Windows, Mac, \*nix. Download and install it. You can open it to see if it worked.
@@ -46,7 +36,9 @@ R itself is pretty minimal, so we'll want to download [RStudio](https://www.rstu
 ## Using Rstudio
 
 ```{r echo=F}
-include_graphics(file.path(current_fig_path, 'RStudio_screen.png'))
+if (dir.exists('class_1_figures')){
+  include_graphics('class_1_figures/RStudio_screen.png')
+}
 ```
 
 (Figure borrowed from [*Principles of Econometrics with R*](https://bookdown.org/ccolonescu/RPoE4/intro.html))
@@ -59,71 +51,9 @@ include_graphics(file.path(current_fig_path, 'RStudio_screen.png'))
 
 * __Packages/Help/Plot Window__: A catch-all for random stuff you might want to look at. We'll mostly be using this window to get help on R functions, or to look at plots
 
-# What will we learn?
-
-This class will give you an introduction into how to code in the context of asking questions about data. We're going to learn how to read in data; how to use R to perform computations on this data that would be difficult (or impossible, depending on how much data you're working with) to perform otherwise, such as simultaneously computing averages of various categories of data points that you select; and how to plot your data and the results of the analyses you perform.
-
-We hope that by the end of the class, you will feel relatively comfortable using R to perform some analysis on data that you have collected (or even data someone else has collected!) and to plot the results. These are practical skills that you will find useful in a wide range of fields, not just biology.
-
-This class is *not* a comprehensive introduction to coding. There will be lots more to learn after you are done with the SURP program if you're interested in pursuing computational work more seriously. But in our experience, learning the first bits of coding can present a huge barrier to students (it certainly did for us and many of our colleagues). We hope that we'll be able to break this barrier down for you over the course of the summer.
-
-## Examples from a previous SURP student
-
-Here is an example of some work that was done by a SURP student in the summer of 2018, Janessa Vail
-
-```{r}
-# First, we load in the data
-
-# Look for Janessa's data in your current directory
-load(file.path(current_path, 'Janessa_GR_data.Rdata'))
-# Show Janessa's data table
-View(Janessa_growth_rate_data)
-```
-
-We can immediately see why Janessa's data would be hard to try to analyze by hand or, let's say, in excel.
-
-1. There's LOTS of data. If you look in the 'Environment' box on the right side of your screen, you will see that it says something like 'Janessa_growth...|54491 obs of 16 variables'. This is telling you that the data contains ~55,000 observations (in this case, measurements of growth rate and other things for individual yeast colonies)
-
-2. The data can be subdivided into many categories that might be of interest to our analysis, and the data are not sorted by those categories. For example, let's take a look at the different strains whose growth rates Janessa measured in this data:
-```{r}
-Janessa_strain_list <- unique(Janessa_growth_rate_data$Strain)
-print(paste("The unique strains from Janessa's experiment are:",
-            paste(Janessa_strain_list, collapse = ', ')))
-```
-
-In your data, you may have measurements made in different strains, across different conditions, etc. If you want to easily calculate the means of different combinations of these categories, it can prove difficult in excel, especially with lots of data. We can make tables that summarize the mean and sample size for each strain in Janessa's experiment:
-```{r}
-Janessa_means <- setNames(
-  aggregate(data = Janessa_growth_rate_data,
-            GR ~ Strain,
-            FUN = mean),
-  c('Strain', 'mean_growth_rate'))
-Janessa_sample_sizes <- setNames(
-  aggregate(data = Janessa_growth_rate_data,
-            GR ~ Strain,
-            FUN = length),
-  c('Strain', 'sample_number'))
-```
-
-```{r echo = F}
-print('Table of growth rate means')
-print(Janessa_means)
-
-print('Table of growth rate sample sizes')
-print(Janessa_sample_sizes)
-
-```
-
-You also probably want to be able to plot data, automatically splitting it into whatever categories you're interested in. Once you know a little bit about how to use it, R makes this very easy! Since Janessa was interested in comparing growth rates between strains, she plotted these:
-
-```{r}
-ggplot(data = Janessa_growth_rate_data) +
-  geom_boxplot(aes(x = Strain, y = GR, color = Strain))
-```
-
 # Getting organized
 
-Make yourself a folder for this work. AVOID using spaces, use \_ (my_directory) or CapitalizeEachWord (ThisIsCalledCamelCase). Why no spaces? They're harder to type for when navigating directories from within R. Give directories informative names, it'll help you later on. Use consistent naming schemes, choose either CamelCase or underscores.
+Make yourself a folder for this work. AVOID using spaces, use '_' (my_directory) or CapitalizeEachWord (ThisIsCalledCamelCase). Why no spaces? They're harder to type for when navigating directories from within R. Give directories informative names, it'll help you later on. Use consistent naming schemes, choose either CamelCase or underscores.
 
 # Using R notebooks
 
@@ -137,12 +67,16 @@ To download this lecture's R notebook, scroll to the top of this website, click 
 
 ## Starting a new notebook
 ```{r echo = F}
-include_graphics(file.path(current_fig_path, 'new_nb.png'))
+if (dir.exists('class_1_figures')){
+  include_graphics('class_1_figures/new_nb.png')
+}
 ```
  
 Elements of a notebook:
 ```{r echo=F}
-include_graphics(file.path(current_fig_path, 'nb_elements.png'))
+if (dir.exists('class_1_figures')){
+  include_graphics('class_1_figures/nb_elements.png')
+}
 ```
 The notebook contains 3 major parts:
 
@@ -154,33 +88,33 @@ The notebook contains 3 major parts:
 
 There are a couple of ways to run code from your code chunks inside the notebook. You can press the **Run** button at the top right of your editor window in Rstudio to see the options:
 ```{r echo=F}
-include_graphics(file.path(current_fig_path, 'code_running_options.png'))
+if (dir.exists('class_1_figures')){
+  include_graphics('class_1_figures/code_running_options.png')
+}
 ```
 You can highlight specific line (or lines of code) and just run those; you can run an entire code chunk at a time; or you run all the code in the current notebook.
 
 Once you've run your code, save your notebook in Rstudio. This will automatically update the formatted html file.
 
-**Try downloading this R notebook, opening it in Rstudio, adding yourself as an author, re-running it, saving it, and opening the resulting html file in your web browser**
+**Try downloading this R notebook, opening it in Rstudio, adding yourself as an author, re-running it, saving it, and opening the resulting html file in your web browser. ** Notice that it won't include the graphics: to get those, you have to go through the extra step of downloading the directory that contains them from github, since images are never embedded in the R notebook, but rather included as separate files.
 
 # Packages
 
 One of the best things about R is that there is a huge community of scientists and programmers constantly developing new things and making them available (for free!) for everyone else to use. One of the most common ways these new functionalities are shared is in *packages*. These are essentially collections of various related functionalities--for example, for reshuffling data, doing some special statistical analysis, or making plots. For now, we will use two special R packages besides what automatically comes with the programming language: **knitr**, which is what makes R notebooks into the pretty HTML documents you're reading now, and **ggplot2**, which allows you to beautifully and easily plot your data.
 
-If you find a new package you like online, in most cases, R will automatically install it for you. Below is a piece of code that will install **knitr** and **ggplot2** for you. If you run the code for this lesson in Rstudio, it will automatically install the packages.
+If you find a new package you like online, in most cases, R will automatically install it for you. Below is a piece of code that will install **ggplot2** for you (if you selected "Run All" in your R notebook in Rstudio, the code should have already installed the **knitr** package, although I set it up so that this part isn't visible in the html version.)
+
+If you run the code for this lesson in Rstudio, it will automatically install **gplot2**.
 
 ```{r}
-#install.packages('knitr')
-#install.packages('ggplot2')
+install.packages('ggplot2')
 ```
 
 You don't have to re-install packages every time you open R. However, you *do* have to tell R that you're planning to use some function from a particular package and want R to look there when you're asking it to do things:
 
 ```{r}
 library(ggplot2)
-library(knitr)
 ```
-
-(We've actually already run the *install.packages* and *library* functions above, since we needed **ggplot2** to look at Janessa's data, but I'm doing it again here to demonstrate what's going on.)
 
 # Trying some coding: R-ithmetic
 
@@ -233,7 +167,3 @@ Try searching online to find out how to do the exercises in the code chunk below
 As you google, you may have see some answers on a website called *StackOverflow*. This is a great site that allows people to ask questions and they are answered by members of the R community (or any other community--StackOverflow has sections for most programming languages, and subjects as diverse as Biology and Cooking!). In most cases, there was already someone who had your question at some point, which is why a clever google search can usually help you figure out how to do most things. There are also a ton of blogs online that teach you specific skills in R.
 
 Finally, R has a built-in help page for every function. You can access it by typing a question mark, followed by the name of the function. We will use this a lot more later in the course. For now, try typing **?Arithmetic** (capitalization matters!) into your Rstudio Console window and pressing *enter*. You will see the help text pop up in the bottom right Help window in Rstudio. In practice, this information can sometimes be a bit dense and technical. I usually find it most useful to read the 'description' on top, and then scroll all the way down to the 'examples' section at the bottom of the help page. Don't worry if you don't understand the examples in the arithmetic help section yet--we're going to cover a lot of those in our next class.
-
-# What are students working on? What do they want to learn?
-
-*Fill in during class*
