@@ -14,7 +14,7 @@ This is an introductory R course intended for learners with no prior coding expe
 # with "Workshop" in this repository
 rmd <- Sys.glob("Workshop*.Rmd")
 rmd <- rmd[rmd != "index.Rmd"]
-html <- sub(".Rmd", ".html", rmd)
+html <- sub(".Rmd", ".nb.html", rmd)
 lines <- lapply(rmd, readLines)
 yaml <- lapply(lines, rmarkdown:::parse_yaml_front_matter)
 cat("<ul>")
