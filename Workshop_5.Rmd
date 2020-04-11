@@ -65,9 +65,10 @@ A lot of times, it's not really convenient to enter your data in R. When collect
 
 You should have a dataset in csv format called *iris.csv*. This is a set of information on flower structure collected from plants of 3 iris species. Follow along with this file as we go through the rules. The code below will only work if you have iris.csv saved in the same folder as this file. You can download it here:
 
-First, let's get R to read in the iris data.
+First, let's get R to read in the iris data. You can download it from [here](https://github.com/plavskin/Intro_R_Course/blob/master/iris.csv); right-click (or, on a Mac, control-click) the 'Raw" button on the upper right, select "save link as...", and download it into the same folder as this workshop file.
 ```{r}
-
+# this is actually a built-in dataset in R, but I saved it as a csv so we can
+# practice importing
 iris_df <- read.csv('iris.csv')
 View(iris_df)
 ```
