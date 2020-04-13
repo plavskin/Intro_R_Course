@@ -229,7 +229,7 @@ Ooops... what happened?
 
 ### Extracting data from t-tests
 
-The printouts that running `t.test()` produces are great if you want to just run a single t-test and get a value, but that is often not the case. In a lot of situations, we want some of the values that are being printed out here saved as variables of then own for future use. Or maybe you want to get fancy and use ddply to run lots of t-tests at once. R allows us to do this for any statistical test we run, although figuring out how to do this often requires digging a bit through the documentation and/or online blogs. If you're trying to figure out how to extract info tests performed commonly used functions and packages, I recommend google before anything else.
+The printouts that running `t.test()` produces are great if you want to just run a single t-test and get a value, but that is often not the case. In a lot of situations, we want some of the values that are being printed out here saved as variables of then own for future use. Or maybe you want to get fancy and use ddply to run lots of t-tests at once. R allows us to do this for any statistical test we run, although figuring out how to do this often requires digging a bit through the documentation and/or online blogs. If you're trying to figure out how to extract info from commonly used test functions and packages, I recommend google before anything else.
 
 The first step is to save the results of t.test to a variable.
 ```{r}
@@ -289,7 +289,7 @@ Notice that although we performed this linear model knowing it didn't really mak
 
 Let's take this silly example one step further and look at this data and the fit. **Always plot things when possible!**.
 
-Reminder: you can plot a linear regression to your data in ggplot, with a confidence interval, using `geom_smooth(method = 'lm)`
+Reminder: you can plot a linear regression to your data in ggplot, with a confidence interval, using `geom_smooth(method = 'lm')`
 ```{r}
 # Use ggplot to create a plot of Sepal.Width on the x-axis, and Petal.Width on
 # the y-axis; include all datapoints, colored by Species, and a *single*
@@ -297,25 +297,26 @@ Reminder: you can plot a linear regression to your data in ggplot, with a confid
 # (regardless of species)
 
 ```
-Does the strong negative slope here make sense? What's going on? (This is a huge and very common problem called [**Simpson's Paradox**](https://en.wikipedia.org/wiki/Simpson%27s_paradox))
+Does the strong negative slope here make sense? What's going on? (This is a very common problem called [**Simpson's Paradox**](https://en.wikipedia.org/wiki/Simpson%27s_paradox), which often confounds correlations and linear models.)
 
 Maybe we can do a better job within the confines of our silly example by including terms for Species in our linear model?
 ```{r}
-# create a new variable, silly_model_with_species, that models Petal.Width as a
-# function of Sepal.Width and Species, and print out its summary
+# create a new variable, silly_model_with_species, containing a linear model
+# that models Petal.Width as a function of Sepal.Width and Species, and print
+# out its summary
 # Hint: see how we split data by multiple categories in ddply earlier
 
 ```
 What is the "Intercept" here? If we look at the slope terms, we can see that the first Species in the list (*setosa*) is treated as the "Intercept" Species. Therefore, the Intercept is what the model calculates the petal width of a *setosa* flower would be if its sepal width were 0. The rest of the terms here are considered slopes: each extra centimeter of sepal width increases petal width by ~0.5cm (the relationship between sepal width and petal length is now positive, which I think makes more sense considering the plot we just made). The petal length for a given sepal width is ~3cm higher in *versicolor* than in *setosa*, and ~4cm higher in *virginica* than *setosa*.
 
-**NB**: If you try to make ggplot fit a smooth line for every species individually, you'll notice that the it's actually fitting a different slope for Sepal.Width for every species, rather than a common slope as we are here. This is also possible when running `lm()`, and if you're interested in doing this kind of analysis, I strongly recommend reading some online tutorials, especially the one from Coding Club below.
+**NB**: If you try to make ggplot fit a smooth line for every species individually, you'll notice that it's actually fitting a different slope for Sepal.Width for every species, rather than a common slope across all species, as we are here. This is also possible when running `lm()`, and if you're interested in doing this kind of analysis, I strongly recommend reading some online tutorials, especially the one from Coding Club below.
 
 # More complex statistical analysis
 
-There are a ton of really great R packages and resources for statistical analysis. Some are specialized for particular types of data (e.g. FACS, RNA-seq, etc), while others are more general (e.g. **lme4** and **brms**, which allow you to run mixed-effect linear models, accounting for nested structures of confounding factors in your experiments.
+There are a ton of really great R packages for statistical analysis. Some are specialized for particular types of data (e.g. FACS, RNA-seq, etc), while others are more general (e.g. **lme4** and **brms**, which allow you to run mixed-effect linear models, accounting for nested structures of sources of experimental noise).
 
-In addition to "just googling" things, here are some great resources that I love:
+In addition to "just googling" things, here are some resources for learning statistical programming in R that I love:
 
 * [Jenny Bryan's UBC's STAT545 course](https://stat545.com/): walks you through stats in R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want to learn more about statistical analysis in R in general, I highly recommend this.
 * [University of Edinburgh Coding Club](https://ourcodingclub.github.io/tutorials): Great 1-2 hour tutorials on everything from basics of coding to complex statistical analysis, mostly in R and Python. These are amazing resources for getting an introduction to understanding and coding one-off statistical approaches.
-* [Richard McElreath's *Statistical Rethinking*](https://xcelab.net/rm/statistical-rethinking/): An intermediate-level statistics book that I really enjoyed. It walks through statistical analysis mostly from scratch, framing everything in a bayesian context and with constant examples that can be run in R. If you are interested in gaining a deeper understanding of statistics, this is a great resource (and all the lectures from his course associated with this book are [free online](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA/videos))
+* [Richard McElreath's *Statistical Rethinking*](https://xcelab.net/rm/statistical-rethinking/): An intermediate-level statistics book that I really enjoyed. It walks through statistical analysis mostly from scratch, framing everything in a bayesian context and with constant examples that can be run in R. If you are interested in gaining a deeper understanding of statistics, this is a great resource (and all the lectures from his course associated with this book are [free online](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA/videos)!)
