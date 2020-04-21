@@ -315,8 +315,7 @@ What is the "Intercept" here? If we look at the slope terms, we can see that the
 
 There are a ton of really great R packages for statistical analysis. Some are specialized for particular types of data (e.g. FACS, RNA-seq, etc), while others are more general (e.g. **lme4** and **brms**, which allow you to run mixed-effect linear models, accounting for nested structures of sources of experimental noise).
 
-In addition to "just googling" things, here are some resources for learning statistical programming in R that I love:
+In addition to "just googling" things, here are two resources for learning statistical programming in R that I love:
 
-* [Jenny Bryan's UBC's STAT545 course](https://stat545.com/): walks you through stats in R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want to learn more about statistical analysis in R in general, I highly recommend this.
 * [University of Edinburgh Coding Club](https://ourcodingclub.github.io/tutorials): Great 1-2 hour tutorials on everything from basics of coding to complex statistical analysis, mostly in R and Python. These are amazing resources for getting an introduction to understanding and coding one-off statistical approaches.
 * [Richard McElreath's *Statistical Rethinking*](https://xcelab.net/rm/statistical-rethinking/): An intermediate-level statistics book that I really enjoyed. It walks through statistical analysis mostly from scratch, framing everything in a bayesian context and with constant examples that can be run in R. If you are interested in gaining a deeper understanding of statistics, this is a great resource (and all the lectures from his course associated with this book are [free online](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA/videos)!)
