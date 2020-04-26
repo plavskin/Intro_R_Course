@@ -27,11 +27,10 @@ In this series of workshops, we will be using the **R** programming language. In
 ## Downloading R
   
 R is available for **free** at
-[r-project.org](https://cran.rstudio.com).
-There's versions for Windows, Mac, \*nix. Download and install it. You can open it to see if it worked.
+[r-project.org](https://cran.rstudio.com). To maintain consistency among everyone in the class, please download **R version 3.6.3**: you can find it in the following links for [Windows](https://cran.r-project.org/bin/windows/base/old/3.6.3/), [Mac](https://cran.r-project.org/bin/macosx/R-3.6.3.nn.pkg), [Linux](https://cran.r-project.org/bin/linux/). Download and install it. You can open it to see if it worked.
 You enter commands by typing them and pressing enter. R should 
 spit back a response of some kind. One thing you can do is type
-`version` and hit enter. It'll respond with the version. You should have downloaded the latest version, around 3.5.1 or later.
+`version` and hit enter. It'll respond with the version information.
 
 ## Downloading Rstudio
 
