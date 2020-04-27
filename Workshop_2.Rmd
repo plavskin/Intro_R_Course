@@ -16,6 +16,7 @@ output:
     toc: yes
 ---
 **Solutions to this workshop can be found [here](Solutions_Workshop_2.nb.html)**
+
 # Variables
 ## Variables hold information
 Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
