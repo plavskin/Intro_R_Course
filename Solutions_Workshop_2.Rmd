@@ -15,7 +15,6 @@ output:
     tidy: yes
     toc: yes
 ---
-**Solutions to this workshop can be found [here](Solutions_Workshop_2.nb.html)**
 # Variables
 ## Variables hold information
 Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
@@ -47,6 +46,7 @@ char
 
 # In your console, try typing 'char <- a' (no quotes) and seeing what happens
 ```
+(`char <- a` results in an error, because `a` without quotes is treated as a variable name, and that variable has not been assigned yet.)
 
 Characters variables can store *strings*, such as words and sentences (in fact, in R, *string* and *character* are basically interchangeable). In R, one string (everything between the quotation marks) is stored as a single unit.
 ```{r}
@@ -64,11 +64,12 @@ You can identify the type of variable (numeric, character) using `is()`.
 is(5)
 
 # Try identifying the type of variable for char_variable1
-
+is(char_variable1)
 # How about char_variable2?
-
+is(char_variable2)
 # What is going on?
 ```
+Notice that the thing we assigned into *char_variable1* was "variable_1" in quotes, which is just a character string, like any other, hence it's listed as a "character" (don't worry about the rest of this output for now). On the other hand, the thing we assigned into *char_variable2* was *variable_1* without quotes, which copies the contents of the *variable_1* variable and stores that copy in *char_variable2*. We earlier assigned *variable_1* to hold a number, hence *char_variable2* is now also a numeric type.
 
 You can also make numbers into strings: just put a quote around them!
 ```{r}
@@ -76,10 +77,14 @@ num_string <- '4'
 actual_num <- 4
 
 # Try identifying the types of num_string and actual_num
-
+is(num_string)
+is(actual_num)
 ```
 
 You need to be very careful about the types of your variables. It may look like *actual_num* and *num_string* are holding the same thing, but because we've implicitly told R that they are of different types, they behave very differently. In the **Console**, try adding *num_string* to *actual_num*. What happens, and why? What is R's cryptic message trying to tell you?
+
+`actual_num + num_string` results in an error, described as 'non-numeric argument to binary operator'; this means you're trying to perform an operation that is done on numbers (addition) with something that's not a number (`num_string`)
+
 
 # Functions
 ## Adding with functions
@@ -93,7 +98,7 @@ sum(variable1, variable2)
 `sum()` can also take more than two inputs!
 ```{r}
 # Try using the sum function to compute the sum of 3, 4, and 6
-
+sum(3,4,6)
 ```
 
 Functions are their own type! You can try using `is()` to check this:
@@ -122,11 +127,11 @@ subject_rank <- '1'
 biology_quality <- paste(favorite_subject, statement_about_subject, subject_rank)
 ```
 
-Notice that the code above didn't print anything out. That's because we directed the output of the `paste()` function into a variable, *biology_quality*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
+Notice that the code above didn't print anything out. That's because we directed the output of the `paste` function into a variable, *biology_quality*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
 ```{r}
 # Find an R function to print out a variable, and use it to print whatever
-# the current_program variable is storing
-
+# the biology_quality variable is storing
+print(biology_quality)
 ```
 
 You can learn about a function by reading its documentation. You can access the documentation with `?`, for example, type `?paste` into your console. You will see the help text pop up in the bottom right Help box in Rstudio.
@@ -142,11 +147,12 @@ You can learn about a function by reading its documentation. You can access the 
 In practice, this information can sometimes be a bit dense and technical. I usually find it most useful to read the 'description' on top, and then scroll all the way down to the 'examples' section at the bottom of the help function.
 
 Notice that when we used paste above, the function automatically put a space between our two strings. It's often really useful to combine strings with a different character, for example, a dash. Try to read the documentation for `paste()` to figure out how to do this.
-
 ```{r}
 # Combine only the favorite_subject, statement_about_subject, and subject_rank
 # variables, using a dash between them instead of a space
-
+biology_quality_dash <-
+  paste(favorite_subject, statement_about_subject, subject_rank, sep = '-')
+print(biology_quality_dash)
 ```
 
 # Things we hope you've learned today (and will hopefully remember next time)
