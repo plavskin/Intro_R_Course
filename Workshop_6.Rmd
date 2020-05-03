@@ -16,6 +16,7 @@ output:
     tidy: yes
     toc: yes
 ---
+**Solutions to this workshop can be found [here](Solutions_Workshop_6.nb.html)**
 
 # Intro to plotting
 
@@ -188,6 +189,8 @@ iris_plot_with_contours <-
 print(iris_plot_with_contours)
 ```
 
+***
+
 ## themes and other options we can change
 
 ggplot also allows a huge amount of control over other aspects of the plot (e.g. titles, axis labeling and scale, overall plot look, etc). For most of these, ggplot actually allows multiple equivalent ways to achieve the same effect.
@@ -217,8 +220,6 @@ There's a few things going on here:
 * __breaks__: manually assign where the tickmarks go
 * __labels__: for discrete variables, this can be used to rename the categories along your axis
 
-***
-** Skip these section if short on time **
 ### legend
 
 You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to 'color' on our plot is represented, we can use **scale_color_discrete( )**, or, if we want to manually change the values assigned to each category (e.g. the colors), **scale_color_manual( )**:
@@ -266,7 +267,7 @@ iris_3_df <- data.frame(iris3)
 print(iris_3_df)
 ```
 
-Notice that now, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
+Notice that in this modified version of the iris dataset, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
 
 Here's an attempt to make do with what we have:
 ```{r}
@@ -366,10 +367,6 @@ ggsave(file = 'sepal_points_figure.pdf',
 
 Because we specified our font sizes in final_figure_ggplot_theme, they will be consistent across plots, regardless of the size we decide to save them at.
 
-## An example from the literature
-
-[eLife reproducible article](https://repro.elifesciences.org/example.html#)
-
 # Other cool things
 
 ## combining multiple data frames on one plot
@@ -404,16 +401,22 @@ Because ggplot is so popular, there's been a ton of additional packages written 
 ### gganimate
 
 Add animations to plots
-```{r}
+```{r warning=FALSE, message=FALSE, results = FALSE}
+install.packages('gifski')
+install.packages('gganimate')
 library(gganimate)
-basic_iris_plot +
-  transition_states(Species)
+animated_iris_plot <-
+  basic_iris_plot + transition_states(Species)
+# save plot with 3 frames, play at 1 frame per second
+anim_save("animated_iris_plot.gif", animated_iris_plot, nframes = 4, fps = 1)
+# render plot using ![](plot_path) outside of code chunk
 ```
 
 ### cowplot
 
 Arrange your plots for publication figures
 ```{r}
+install.packages('cowplot')
 library(cowplot)
 plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure,
           labels = "AUTO")
