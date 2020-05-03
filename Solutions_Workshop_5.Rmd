@@ -26,22 +26,23 @@ review_vector <- c(1, 2.6, NA, 4.98, 1.5, NA)
 
 # run a function that will determine which of the values in review_vector is a
 # missing value
-
+is.na(review_vector)
 # run an operation that will determine which of the numbers in review_vector is
 # greater than 2 and less than 4
-
+subvector_logical <- review_vector > 2 & review_vector < 4
 # use the logical vector above to create a subvector of review_vector that only
 # includes the elements of review_vector that are greater than 2 and less than 4
-
-
+subvector <- review_vector[subvector_logical]
+print(subvector)
 
 leaf_number <- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
 
 # make a logical vector called many_leaves that tells you whether each position
 # in leaf_number is greater than 10
-
+many_leaves <- leaf_number > 10
 # use many_leaves to set each value of leaf_number over 10 to infinity (Inf)
-
+leaf_number[many_leaves] <- Inf
+print(leaf_number)
 ```
 
 # Data Frames: Reading in and manipulating data, writing data
@@ -94,7 +95,7 @@ Let's say we wanted to calculate the mean petal width of all the irises measured
 print(iris_df$Sepal.Length)
 
 # get the mean of the petal widths
-
+mean(iris_df$Sepal.Length)
 ```
 
 We can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).
@@ -106,7 +107,7 @@ When using indices to specify position in a data frame, **rows first, columns se
 print(iris_df[2, 3])
 
 # Get the values in the 2nd to 5th rows in the fifth column in iris_df
-
+print(iris_df[c(2:5), 5])
 ```
 
 In addition to using numeric indices, you can also use names of columns (or rows, if they're named!)
@@ -120,8 +121,9 @@ Finally, if you want to get *every* row or *every* column, just leave that index
 print(iris_df[ , 2])
 
 # get every value in the 6th row of iris_df
-
+print(iris_df[6, ])
 ```
+(Note that printing out all of the sixth row results in a dataframe, not a vector. This can come in handy as you manipulate tables in R, e.g. if you want to add rows from one dataframe to another one.)
 
 ## Creating new columns from operations on other columns
 
@@ -131,7 +133,7 @@ A lot of times, we need to process the data we have in order for it to be intere
 # remember that to specify a column, we can use $. We can also use this to
 # create a new column, Petal.Ratio
 iris_df$Petal.Ratio <- iris_df$Petal.Length / iris_df$Petal.Width
-
+View(iris_df)
 ```
 
 ## Creating new data frames from scratch and writing them
@@ -163,12 +165,14 @@ parks_df_2
 
 ```{r}
 #try accessing the values rows 1, 2, and 3 of column 1
+parks_df[c(1:3), 1]
 ```
 
 What if you wanted to share this data with a colleague, so they could do their own calculations? The nicest way would be to send them a csv. We can make csvs from data frames in R using `write.csv()`. Take a look at the documentation for this function.
 
 ```{r}
 # write a csv called 'parks.csv' with the data in parks_df
+write.csv(parks_df, 'parks.csv')
 ```
 
 ## Watch out for factors!
@@ -197,12 +201,12 @@ as.numeric(as.character(parks_df$squirrels))
 By first going through `as.character` and THEN `as.numeric`, you
 preserve your entries as intended.
 
-Finally, if you want to change the values in the data frame, you must remember to reassign that column
+Finally, if you want to change the values in the data frame, you must remember to reassign that column back to the dataframe (running `as.numeric()`, or any other function, without using the assignment `<-` doesn't change the original!)
 
 ```{r}
 as.numeric(as.character(parks_df$squirrels)) 
 str(parks_df)
-parks_df[,3] <- as.numeric(as.character(parks_df$squirrels)) 
+parks_df$squirrels <- as.numeric(as.character(parks_df$squirrels)) 
 str(parks_df)
 ```
 
@@ -211,20 +215,26 @@ str(parks_df)
 Now, maybe we want to use these columns to find out something about parks in NYC. Maybe we want to find the average number of rats and pigeons in NYC parks.
 
 ```{r}
-# find the mean number of rats and pigeons for parks in NYC
+# find the mean number of rat and pigeons for parks in NYC
+mean(parks_df$rats)
+mean(parks_df$pigeons)
 ```
 
 We also want to know the amount of variation in pigeon and rat populations.
 
 ```{r}
 # calculate the standard deviation - use google to help you find functions
+sd(parks_df$rats)
+sd(parks_df$pigeons)
 ```
 
 If we have many columns with numeric data, finding the mean of each of them individually could take a while. We can use the function `colMeans()` instead. Take a look at the documentation for `colMeans()`
 
 ```{r}
 # try using colMeans() to find the mean number of rats and pigeons for parks in NYC
-
+  # colMeans(parks_df)
+  # doesn't work because can't take the mean of strings or factors (i.e. park name columns)
 # do you run into problems? why? how could we get what we want using this function?
+colMeans(parks_df[ , 3:4])
 ```
 

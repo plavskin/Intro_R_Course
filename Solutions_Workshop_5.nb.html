@@ -1764,16 +1764,11 @@ summary {
 <li><a href="#data-frames-reading-in-and-manipulating-data-writing-data">Data Frames: Reading in and manipulating data, writing data</a><ul>
 <li><a href="#reading-in-tables-from-excel">Reading in tables from excel</a></li>
 <li><a href="#selecting-data-from-data-frames-row-numbers-and-column-numbers-and">Selecting data from data frames: row numbers and column numbers and $</a></li>
-</ul></li>
-<li><a href="#get-the-mean-of-the-petal-widths">get the mean of the petal widths</a></li>
-<li><a href="#get-the-values-in-the-2nd-to-5th-rows-in-the-fifth-column-in-iris_df">Get the values in the 2nd to 5th rows in the fifth column in iris_df</a></li>
-<li><a href="#get-every-value-in-the-6th-row-of-iris_df">get every value in the 6th row of iris_df</a><ul>
 <li><a href="#creating-new-columns-from-operations-on-other-columns">Creating new columns from operations on other columns</a></li>
 <li><a href="#creating-new-data-frames-from-scratch-and-writing-them">Creating new data frames from scratch and writing them</a></li>
 <li><a href="#watch-out-for-factors">Watch out for factors!</a></li>
 <li><a href="#calculate-column-means-standard-deviations-standard-errors">Calculate column means, standard deviations, standard errors</a></li>
 </ul></li>
-<li><a href="#do-you-run-into-problems-why-how-could-we-get-what-we-want-using-this-function">do you run into problems? why? how could we get what we want using this function?</a></li>
 </ul>
 </div>
 
@@ -1783,28 +1778,41 @@ summary {
 <h1>Review</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmV2aWV3X3ZlY3RvciA8LSBjKDEsIDIuNiwgTkEsIDQuOTgsIDEuNSwgTkEpXG5cbiMgcnVuIGEgZnVuY3Rpb24gdGhhdCB3aWxsIGRldGVybWluZSB3aGljaCBvZiB0aGUgdmFsdWVzIGluIHJldmlld192ZWN0b3IgaXMgYVxuIyBtaXNzaW5nIHZhbHVlXG5cbiMgcnVuIGFuIG9wZXJhdGlvbiB0aGF0IHdpbGwgZGV0ZXJtaW5lIHdoaWNoIG9mIHRoZSBudW1iZXJzIGluIHJldmlld192ZWN0b3IgaXNcbiMgZ3JlYXRlciB0aGFuIDIgYW5kIGxlc3MgdGhhbiA0XG5cbiMgdXNlIHRoZSBsb2dpY2FsIHZlY3RvciBhYm92ZSB0byBjcmVhdGUgYSBzdWJ2ZWN0b3Igb2YgcmV2aWV3X3ZlY3RvciB0aGF0IG9ubHlcbiMgaW5jbHVkZXMgdGhlIGVsZW1lbnRzIG9mIHJldmlld192ZWN0b3IgdGhhdCBhcmUgZ3JlYXRlciB0aGFuIDIgYW5kIGxlc3MgdGhhbiA0XG5cblxuXG5sZWFmX251bWJlciA8LSBjKDUsIDgsIDUsIDExLCA0LCA1LCA4LCAxMywgMTAsIDQsIDcpXG5cbiMgbWFrZSBhIGxvZ2ljYWwgdmVjdG9yIGNhbGxlZCBtYW55X2xlYXZlcyB0aGF0IHRlbGxzIHlvdSB3aGV0aGVyIGVhY2ggcG9zaXRpb25cbiMgaW4gbGVhZl9udW1iZXIgaXMgZ3JlYXRlciB0aGFuIDEwXG5cbiMgdXNlIG1hbnlfbGVhdmVzIHRvIHNldCBlYWNoIHZhbHVlIG9mIGxlYWZfbnVtYmVyIG92ZXIgMTAgdG8gaW5maW5pdHkgKEluZilcblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmV2aWV3X3ZlY3RvciA8LSBjKDEsIDIuNiwgTkEsIDQuOTgsIDEuNSwgTkEpXG5cbiMgcnVuIGEgZnVuY3Rpb24gdGhhdCB3aWxsIGRldGVybWluZSB3aGljaCBvZiB0aGUgdmFsdWVzIGluIHJldmlld192ZWN0b3IgaXMgYVxuIyBtaXNzaW5nIHZhbHVlXG5pcy5uYShyZXZpZXdfdmVjdG9yKVxuYGBgIn0= -->
 <pre class="r"><code>review_vector &lt;- c(1, 2.6, NA, 4.98, 1.5, NA)
 
 # run a function that will determine which of the values in review_vector is a
 # missing value
-
-# run an operation that will determine which of the numbers in review_vector is
+is.na(review_vector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIEZBTFNFIEZBTFNFICBUUlVFIEZBTFNFIEZBTFNFICBUUlVFXG4ifQ== -->
+<pre><code>[1] FALSE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBydW4gYW4gb3BlcmF0aW9uIHRoYXQgd2lsbCBkZXRlcm1pbmUgd2hpY2ggb2YgdGhlIG51bWJlcnMgaW4gcmV2aWV3X3ZlY3RvciBpc1xuIyBncmVhdGVyIHRoYW4gMiBhbmQgbGVzcyB0aGFuIDRcbnN1YnZlY3Rvcl9sb2dpY2FsIDwtIHJldmlld192ZWN0b3IgPiAyICYgcmV2aWV3X3ZlY3RvciA8IDRcbiMgdXNlIHRoZSBsb2dpY2FsIHZlY3RvciBhYm92ZSB0byBjcmVhdGUgYSBzdWJ2ZWN0b3Igb2YgcmV2aWV3X3ZlY3RvciB0aGF0IG9ubHlcbiMgaW5jbHVkZXMgdGhlIGVsZW1lbnRzIG9mIHJldmlld192ZWN0b3IgdGhhdCBhcmUgZ3JlYXRlciB0aGFuIDIgYW5kIGxlc3MgdGhhbiA0XG5zdWJ2ZWN0b3IgPC0gcmV2aWV3X3ZlY3RvcltzdWJ2ZWN0b3JfbG9naWNhbF1cbnByaW50KHN1YnZlY3RvcilcbmBgYCJ9 -->
+<pre class="r"><code># run an operation that will determine which of the numbers in review_vector is
 # greater than 2 and less than 4
-
+subvector_logical &lt;- review_vector &gt; 2 &amp; review_vector &lt; 4
 # use the logical vector above to create a subvector of review_vector that only
 # includes the elements of review_vector that are greater than 2 and less than 4
-
-
-
-leaf_number &lt;- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
+subvector &lt;- review_vector[subvector_logical]
+print(subvector)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuNiAgTkEgIE5BXG4ifQ== -->
+<pre><code>[1] 2.6  NA  NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVhZl9udW1iZXIgPC0gYyg1LCA4LCA1LCAxMSwgNCwgNSwgOCwgMTMsIDEwLCA0LCA3KVxuXG4jIG1ha2UgYSBsb2dpY2FsIHZlY3RvciBjYWxsZWQgbWFueV9sZWF2ZXMgdGhhdCB0ZWxscyB5b3Ugd2hldGhlciBlYWNoIHBvc2l0aW9uXG4jIGluIGxlYWZfbnVtYmVyIGlzIGdyZWF0ZXIgdGhhbiAxMFxubWFueV9sZWF2ZXMgPC0gbGVhZl9udW1iZXIgPiAxMFxuIyB1c2UgbWFueV9sZWF2ZXMgdG8gc2V0IGVhY2ggdmFsdWUgb2YgbGVhZl9udW1iZXIgb3ZlciAxMCB0byBpbmZpbml0eSAoSW5mKVxubGVhZl9udW1iZXJbbWFueV9sZWF2ZXNdIDwtIEluZlxucHJpbnQobGVhZl9udW1iZXIpXG5gYGAifQ== -->
+<pre class="r"><code>leaf_number &lt;- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
 
 # make a logical vector called many_leaves that tells you whether each position
 # in leaf_number is greater than 10
-
+many_leaves &lt;- leaf_number &gt; 10
 # use many_leaves to set each value of leaf_number over 10 to infinity (Inf)
-</code></pre>
+leaf_number[many_leaves] &lt;- Inf
+print(leaf_number)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgIDUgICA4ICAgNSBJbmYgICA0ICAgNSAgIDggSW5mICAxMCAgIDQgICA3XG4ifQ== -->
+<pre><code> [1]   5   8   5 Inf   4   5   8 Inf  10   4   7</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1833,9 +1841,11 @@ leaf_number &lt;- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
 <p>First, let’s get R to read in the iris data. You can download it from <a href="https://github.com/plavskin/Intro_R_Course/blob/master/iris.csv">here</a>; right-click (or, on a Mac, control-click) the ’Raw&quot; button on the upper right, select “save link as…”, and download it into the same folder as this workshop file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0aGlzIGlzIGFjdHVhbGx5IGEgYnVpbHQtaW4gZGF0YXNldCBpbiBSLCBidXQgSSBzYXZlZCBpdCBhcyBhIGNzdiBzbyB3ZSBjYW5cbiMgcHJhY3RpY2UgaW1wb3J0aW5nXG5pcmlzX2RmIDwtIHJlYWQuY3N2KCdpcmlzLmNzdicpXG5WaWV3KGlyaXNfZGYpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # this is actually a built-in dataset in R, but I saved it as a csv so we can # practice importing iris_df &lt;- read.csv(‘iris.csv’) View(iris_df)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aGlzIGlzIGFjdHVhbGx5IGEgYnVpbHQtaW4gZGF0YXNldCBpbiBSLCBidXQgSSBzYXZlZCBpdCBhcyBhIGNzdiBzbyB3ZSBjYW5cbiMgcHJhY3RpY2UgaW1wb3J0aW5nXG5pcmlzX2RmIDwtIHJlYWQuY3N2KCdpcmlzLmNzdicpXG5WaWV3KGlyaXNfZGYpXG5gYGAifQ== -->
+<pre class="r"><code># this is actually a built-in dataset in R, but I saved it as a csv so we can
+# practice importing
+iris_df &lt;- read.csv('iris.csv')
+View(iris_df)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1853,58 +1863,99 @@ leaf_number &lt;- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
 <p>Let’s say we wanted to calculate the mean petal width of all the irises measured in the iris dataset. How can we do this? We need to select the petal width column. There are a couple of ways to do this. The easiest and most common one is using <code>$</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBwcmludCBvdXQgYWxsIHRoZSBzZXBhbCBsZW5ndGhzXG5wcmludChpcmlzX2RmJFNlcGFsLkxlbmd0aClcblxuIyBnZXQgdGhlIG1lYW4gb2YgdGhlIHBldGFsIHdpZHRoc1xuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # print out all the sepal lengths print(iris_df$Sepal.Length)</p>
-</div>
-</div>
-<div id="get-the-mean-of-the-petal-widths" class="section level1">
-<h1>get the mean of the petal widths</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwcmludCBvdXQgYWxsIHRoZSBzZXBhbCBsZW5ndGhzXG5wcmludChpcmlzX2RmJFNlcGFsLkxlbmd0aClcbmBgYCJ9 -->
+<pre class="r"><code># print out all the sepal lengths
+print(iris_df$Sepal.Length)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gNS4xIDQuOSA0LjcgNC42IDUuMCA1LjQgNC42IDUuMCA0LjQgNC45IDUuNCA0LjggNC44IDQuMyA1LjggNS43IDUuNCA1LjEgNS43IDUuMSA1LjQgNS4xIDQuNiA1LjEgNC44IDUuMFxuIFsyN10gNS4wIDUuMiA1LjIgNC43IDQuOCA1LjQgNS4yIDUuNSA0LjkgNS4wIDUuNSA0LjkgNC40IDUuMSA1LjAgNC41IDQuNCA1LjAgNS4xIDQuOCA1LjEgNC42IDUuMyA1LjAgNy4wIDYuNFxuIFs1M10gNi45IDUuNSA2LjUgNS43IDYuMyA0LjkgNi42IDUuMiA1LjAgNS45IDYuMCA2LjEgNS42IDYuNyA1LjYgNS44IDYuMiA1LjYgNS45IDYuMSA2LjMgNi4xIDYuNCA2LjYgNi44IDYuN1xuIFs3OV0gNi4wIDUuNyA1LjUgNS41IDUuOCA2LjAgNS40IDYuMCA2LjcgNi4zIDUuNiA1LjUgNS41IDYuMSA1LjggNS4wIDUuNiA1LjcgNS43IDYuMiA1LjEgNS43IDYuMyA1LjggNy4xIDYuM1xuWzEwNV0gNi41IDcuNiA0LjkgNy4zIDYuNyA3LjIgNi41IDYuNCA2LjggNS43IDUuOCA2LjQgNi41IDcuNyA3LjcgNi4wIDYuOSA1LjYgNy43IDYuMyA2LjcgNy4yIDYuMiA2LjEgNi40IDcuMlxuWzEzMV0gNy40IDcuOSA2LjQgNi4zIDYuMSA3LjcgNi4zIDYuNCA2LjAgNi45IDYuNyA2LjkgNS44IDYuOCA2LjcgNi43IDYuMyA2LjUgNi4yIDUuOVxuIn0= -->
+<pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0
+ [27] 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6 5.3 5.0 7.0 6.4
+ [53] 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1 5.6 6.7 5.6 5.8 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7
+ [79] 6.0 5.7 5.5 5.5 5.8 6.0 5.4 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7 5.7 6.2 5.1 5.7 6.3 5.8 7.1 6.3
+[105] 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4 6.8 5.7 5.8 6.4 6.5 7.7 7.7 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1 6.4 7.2
+[131] 7.4 7.9 6.4 6.3 6.1 7.7 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8 6.7 6.7 6.3 6.5 6.2 5.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgdGhlIG1lYW4gb2YgdGhlIHBldGFsIHdpZHRoc1xubWVhbihpcmlzX2RmJFNlcGFsLkxlbmd0aClcbmBgYCJ9 -->
+<pre class="r"><code># get the mean of the petal widths
+mean(iris_df$Sepal.Length)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDUuODQzMzMzXG4ifQ== -->
+<pre><code>[1] 5.843333</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).</p>
 <p>When using indices to specify position in a data frame, <strong>rows first, columns second</strong></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBHZXQgdGhlIHZhbHVlIGluIHRoZSBzZWNvbmQgcm93IGFuZCB0aGlyZCBjb2x1bW4gaW4gdGhlIGlyaXMgZGF0YXNldFxucHJpbnQoaXJpc19kZlsyLCAzXSlcblxuIyBHZXQgdGhlIHZhbHVlcyBpbiB0aGUgMm5kIHRvIDV0aCByb3dzIGluIHRoZSBmaWZ0aCBjb2x1bW4gaW4gaXJpc19kZlxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Get the value in the second row and third column in the iris dataset print(iris_df[2, 3])</p>
-</div>
-<div id="get-the-values-in-the-2nd-to-5th-rows-in-the-fifth-column-in-iris_df" class="section level1">
-<h1>Get the values in the 2nd to 5th rows in the fifth column in iris_df</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgdGhlIHZhbHVlIGluIHRoZSBzZWNvbmQgcm93IGFuZCB0aGlyZCBjb2x1bW4gaW4gdGhlIGlyaXMgZGF0YXNldFxucHJpbnQoaXJpc19kZlsyLCAzXSlcbmBgYCJ9 -->
+<pre class="r"><code># Get the value in the second row and third column in the iris dataset
+print(iris_df[2, 3])</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuNFxuIn0= -->
+<pre><code>[1] 1.4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgdGhlIHZhbHVlcyBpbiB0aGUgMm5kIHRvIDV0aCByb3dzIGluIHRoZSBmaWZ0aCBjb2x1bW4gaW4gaXJpc19kZlxucHJpbnQoaXJpc19kZltjKDI6NSksIDVdKVxuYGBgIn0= -->
+<pre class="r"><code># Get the values in the 2nd to 5th rows in the fifth column in iris_df
+print(iris_df[c(2:5), 5])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIHNldG9zYSBzZXRvc2Egc2V0b3NhIHNldG9zYVxuTGV2ZWxzOiBzZXRvc2EgdmVyc2ljb2xvciB2aXJnaW5pY2FcbiJ9 -->
+<pre><code>[1] setosa setosa setosa setosa
+Levels: setosa versicolor virginica</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>In addition to using numeric indices, you can also use names of columns (or rows, if they’re named!)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJpbnQoaXJpc19kZlsyLCAnUGV0YWwuTGVuZ3RoJ10pXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r print(iris_df[2, ‘Petal.Length’])</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoaXJpc19kZlsyLCAnUGV0YWwuTGVuZ3RoJ10pXG5gYGAifQ== -->
+<pre class="r"><code>print(iris_df[2, 'Petal.Length'])</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuNFxuIn0= -->
+<pre><code>[1] 1.4</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Finally, if you want to get <em>every</em> row or <em>every</em> column, just leave that index blank.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBnZXQgZXZlcnkgZWxlbWVudCBmcm9tIDJuZCBjb2x1bW4gKHNhbWUgYXMgaXJpc19kZiRTZXBhbC5XaWR0aClcbnByaW50KGlyaXNfZGZbICwgMl0pXG5cbiMgZ2V0IGV2ZXJ5IHZhbHVlIGluIHRoZSA2dGggcm93IG9mIGlyaXNfZGZcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # get every element from 2nd column (same as iris_df$Sepal.Width) print(iris_df[ , 2])</p>
-</div>
-<div id="get-every-value-in-the-6th-row-of-iris_df" class="section level1">
-<h1>get every value in the 6th row of iris_df</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgZXZlcnkgZWxlbWVudCBmcm9tIDJuZCBjb2x1bW4gKHNhbWUgYXMgaXJpc19kZiRTZXBhbC5XaWR0aClcbnByaW50KGlyaXNfZGZbICwgMl0pXG5gYGAifQ== -->
+<pre class="r"><code># get every element from 2nd column (same as iris_df$Sepal.Width)
+print(iris_df[ , 2])</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gMy41IDMuMCAzLjIgMy4xIDMuNiAzLjkgMy40IDMuNCAyLjkgMy4xIDMuNyAzLjQgMy4wIDMuMCA0LjAgNC40IDMuOSAzLjUgMy44IDMuOCAzLjQgMy43IDMuNiAzLjMgMy40IDMuMFxuIFsyN10gMy40IDMuNSAzLjQgMy4yIDMuMSAzLjQgNC4xIDQuMiAzLjEgMy4yIDMuNSAzLjYgMy4wIDMuNCAzLjUgMi4zIDMuMiAzLjUgMy44IDMuMCAzLjggMy4yIDMuNyAzLjMgMy4yIDMuMlxuIFs1M10gMy4xIDIuMyAyLjggMi44IDMuMyAyLjQgMi45IDIuNyAyLjAgMy4wIDIuMiAyLjkgMi45IDMuMSAzLjAgMi43IDIuMiAyLjUgMy4yIDIuOCAyLjUgMi44IDIuOSAzLjAgMi44IDMuMFxuIFs3OV0gMi45IDIuNiAyLjQgMi40IDIuNyAyLjcgMy4wIDMuNCAzLjEgMi4zIDMuMCAyLjUgMi42IDMuMCAyLjYgMi4zIDIuNyAzLjAgMi45IDIuOSAyLjUgMi44IDMuMyAyLjcgMy4wIDIuOVxuWzEwNV0gMy4wIDMuMCAyLjUgMi45IDIuNSAzLjYgMy4yIDIuNyAzLjAgMi41IDIuOCAzLjIgMy4wIDMuOCAyLjYgMi4yIDMuMiAyLjggMi44IDIuNyAzLjMgMy4yIDIuOCAzLjAgMi44IDMuMFxuWzEzMV0gMi44IDMuOCAyLjggMi44IDIuNiAzLjAgMy40IDMuMSAzLjAgMy4xIDMuMSAzLjEgMi43IDMuMiAzLjMgMy4wIDIuNSAzLjAgMy40IDMuMFxuIn0= -->
+<pre><code>  [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0
+ [27] 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.0 3.4 3.5 2.3 3.2 3.5 3.8 3.0 3.8 3.2 3.7 3.3 3.2 3.2
+ [53] 3.1 2.3 2.8 2.8 3.3 2.4 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7 2.2 2.5 3.2 2.8 2.5 2.8 2.9 3.0 2.8 3.0
+ [79] 2.9 2.6 2.4 2.4 2.7 2.7 3.0 3.4 3.1 2.3 3.0 2.5 2.6 3.0 2.6 2.3 2.7 3.0 2.9 2.9 2.5 2.8 3.3 2.7 3.0 2.9
+[105] 3.0 3.0 2.5 2.9 2.5 3.6 3.2 2.7 3.0 2.5 2.8 3.2 3.0 3.8 2.6 2.2 3.2 2.8 2.8 2.7 3.3 3.2 2.8 3.0 2.8 3.0
+[131] 2.8 3.8 2.8 2.8 2.6 3.0 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2 3.3 3.0 2.5 3.0 3.4 3.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZXQgZXZlcnkgdmFsdWUgaW4gdGhlIDZ0aCByb3cgb2YgaXJpc19kZlxucHJpbnQoaXJpc19kZls2LCBdKVxuYGBgIn0= -->
+<pre class="r"><code># get every value in the 6th row of iris_df
+print(iris_df[6, ])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJ5MDdETUJEY05vOHFvUThreEdja2x4N2dCZ2ZFaVFPaUlIbzFpZHRhR0R0eTNNQ3Z3Si94TFVpbDZ5UmIybEJMcSt4T3hqdWUzWWViK1RTZXh3RGdnUmRpQkpoQzhQUjRtMXdDK0gwc2V1QkQ1TDRmU0RwemZ6SEdEcmcrLzNUbmExZFBwdldoK3VxblUzOFQzeHZWamVzNEVBa2xyN2dzTVR1dDM5U2lKYmU2WkcwVlY5eVVJdE5TbXhhSkttR1dRb21NZGRvRm1XUWxkZHRwTEZobThTN0Fwa3RYN0kwVFBXakI0WXdYVEtaM1hDM3Rxc1ZPR3V4WjVEdG9lTS90UDFxRDdkTUdzNEpud29rY0tFZEd2NmVrVHNNSkc1TDMyekVRNTh5eWRHR1Fmc1RFUUJkV2FJV04rclN0L2NzOTB3RW1hK1dFOHlSYnJkVnJjdUVFL3JZRG95TjUwRWo2OURBYVZZam1oZUkwVGNsZXVHeUxNUnFzL2FXRkVjcVNFMFRMMUdxY0VpRzRWMEpxYjdEWkFuK0FvNVdrQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>(Note that printing out all of the sixth row results in a dataframe, not a vector. This can come in handy as you manipulate tables in R, e.g. if you want to add rows from one dataframe to another one.)</p>
+</div>
 <div id="creating-new-columns-from-operations-on-other-columns" class="section level2">
 <h2>Creating new columns from operations on other columns</h2>
 <p>A lot of times, we need to process the data we have in order for it to be interesting to us. You can imagine a scenario in which we’d want to do this in the iris dataset. We have a list of measures petal widths and lengths from various species, and maybe we want to eventually investigate how these vary across species. But the problem is that even within a species, some flowers just happen to be larger, by chance. These would have BOTH higher petal lengths and widths, making our dataset noisier. Maybe what we really care about is the ratio of petal length to width? R makes calculating this easy.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyByZW1lbWJlciB0aGF0IHRvIHNwZWNpZnkgYSBjb2x1bW4sIHdlIGNhbiB1c2UgJC4gV2UgY2FuIGFsc28gdXNlIHRoaXMgdG9cbiMgY3JlYXRlIGEgbmV3IGNvbHVtbiwgUGV0YWwuUmF0aW9cbmlyaXNfZGYkUGV0YWwuUmF0aW8gPC0gaXJpc19kZiRQZXRhbC5MZW5ndGggLyBpcmlzX2RmJFBldGFsLldpZHRoXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # remember that to specify a column, we can use <span class="math inline">\(. We can also use this to # create a new column, Petal.Ratio iris_df\)</span>Petal.Ratio &lt;- iris_df<span class="math inline">\(Petal.Length / iris_df\)</span>Petal.Width</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1lbWJlciB0aGF0IHRvIHNwZWNpZnkgYSBjb2x1bW4sIHdlIGNhbiB1c2UgJC4gV2UgY2FuIGFsc28gdXNlIHRoaXMgdG9cbiMgY3JlYXRlIGEgbmV3IGNvbHVtbiwgUGV0YWwuUmF0aW9cbmlyaXNfZGYkUGV0YWwuUmF0aW8gPC0gaXJpc19kZiRQZXRhbC5MZW5ndGggLyBpcmlzX2RmJFBldGFsLldpZHRoXG5WaWV3KGlyaXNfZGYpXG5gYGAifQ== -->
+<pre class="r"><code># remember that to specify a column, we can use $. We can also use this to
+# create a new column, Petal.Ratio
+iris_df$Petal.Ratio &lt;- iris_df$Petal.Length / iris_df$Petal.Width
+View(iris_df)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1926,10 +1977,19 @@ squirrels&lt;- c(&quot;358&quot;, &quot;546&quot;, &quot;439&quot;, &quot;344&qu
 <p>Then, we can use the function <code>data.frame()</code> to turn these into a single data frame. The positions in the vectors will correspond to rows, and the names of the vectors will become the column names.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFya3NfZGYgPC0gZGF0YS5mcmFtZShwYXJrLCBzcXVpcnJlbHMsIHJhdHMsIHBpZ2VvbnMpXG5wYXJrc19kZlxuXG4jIGFub3RoZXIgY29tbW9uIHdheSB0byBkbyB0aGUgc2FtZSB0aGluZ1xucGFya3NfZGZfMiA8LVxuICBkYXRhLmZyYW1lKFxuICAgIHBhcmsgPSBjKFwiV2FzaGluZ3RvblNxXCIsIFwiQ2VudHJhbFBhcmtcIiwgXCJQcm9zcGVjdFBhcmtcIiwgXCJCYXR0ZXJ5UGFya1wiKSxcbiAgICBzcXVpcnJlbHMgPSBjKFwiMzU4XCIsIFwiNTQ2XCIsIFwiNDM5XCIsIFwiMzQ0XCIpLFxuICAgIHJhdHMgPSBjKDE1MDAsIDQxMzIwLCAyMDAwMywgNDA1NyksXG4gICAgcGlnZW9ucyA9IGMoOC42MmUzLCAxLjVlNCwgMTkzOSwgMjc2KVxuICAgIClcbnBhcmtzX2RmXzJcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFya3NfZGYgPC0gZGF0YS5mcmFtZShwYXJrLCBzcXVpcnJlbHMsIHJhdHMsIHBpZ2VvbnMpXG5wYXJrc19kZlxuYGBgIn0= -->
 <pre class="r"><code>parks_df &lt;- data.frame(park, squirrels, rats, pigeons)
-parks_df
-
+parks_df</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVNTVTdETUJSMU03UnFvQlVTNTBnRWFvcktyZ0xFaWtYRklMbzFxZHRHTlhicXVBdzdsdHlBSFZkQTRnUzlBQ3NrVHNBNVdqeVdKQkpZc3Q3enovLy8vU0huSjhOT01Bd0FBQzV3NitMNmdnTC82dkkwN0FIZ09lSlJBeDVvU253UVRydUNlQUpiR3RWMVZMUjBMQWZVTWJwRE9CZHNSM2xxNjlZUjVCeXh4d0ZrTTJzNlJvUXppQXVtN1FHamVZWVNYclJkdzN5YWtnbW41R0plMGZJVERITXJ0U2xnREJOT21XQ3JRc21Pd1VMSnpycFNwTnVKNHczdDlpeU5PNGVXZHVNREhldXUvMU1GYlptMS81TEpzWUwrZDZqeDgzbXA4TzBkbUtQOWxsLzYrOGVaeGxlRDg3NXhLemRONEMycXp0ZkxmaWZXek9lTGxERzVCUE9SUVc1NUkwc25pSks4a3JUSjZIMWtFOHVaT1U5RytvOStneEhrTUJvekVhSjdMcVZyMEl5blNzV1IvNDVmQ2E2eGltRm5RYVQ0S0V5bUN6SUw5L2VrZ3Q2VU9pM0R2VEtYbXA2dHpMZWJRR1NTRW1TbmhlRU53dWJSRmwycUpxT01wWVRiVm9RMWp6amwwUG9GQ2NYV29oZTYrZ0dRdTZTR013TUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["park"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["squirrels"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["rats"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pigeons"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"WashingtonSq","2":"358","3":"1500","4":"8620"},{"1":"CentralPark","2":"546","3":"41320","4":"15000"},{"1":"ProspectPark","2":"439","3":"20003","4":"1939"},{"1":"BatteryPark","2":"344","3":"4057","4":"276"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGFub3RoZXIgY29tbW9uIHdheSB0byBkbyB0aGUgc2FtZSB0aGluZ1xucGFya3NfZGZfMiA8LVxuICBkYXRhLmZyYW1lKFxuICAgIHBhcmsgPSBjKFwiV2FzaGluZ3RvblNxXCIsIFwiQ2VudHJhbFBhcmtcIiwgXCJQcm9zcGVjdFBhcmtcIiwgXCJCYXR0ZXJ5UGFya1wiKSxcbiAgICBzcXVpcnJlbHMgPSBjKFwiMzU4XCIsIFwiNTQ2XCIsIFwiNDM5XCIsIFwiMzQ0XCIpLFxuICAgIHJhdHMgPSBjKDE1MDAsIDQxMzIwLCAyMDAwMywgNDA1NyksXG4gICAgcGlnZW9ucyA9IGMoOC42MmUzLCAxLjVlNCwgMTkzOSwgMjc2KVxuICAgIClcbnBhcmtzX2RmXzJcbmBgYCJ9 -->
+<pre class="r"><code>
 # another common way to do the same thing
 parks_df_2 &lt;-
   data.frame(
@@ -1940,21 +2000,33 @@ parks_df_2 &lt;-
     )
 parks_df_2</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEzMVNTVTdETUJSMU03UnFvQlVTNTBnRWFvcktyZ0xFaWtYRklMbzFxZHRHTlhicXVBdzdsdHlBSFZkQTRnUzlBQ3NrVHNBNVdqeVdKQkpZc3Q3enovLy8vU0huSjhOT01Bd0FBQzV3NitMNmdnTC82dkkwN0FIZ09lSlJBeDVvU253UVRydUNlQUpiR3RWMVZMUjBMQWZVTWJwRE9CZHNSM2xxNjlZUjVCeXh4d0ZrTTJzNlJvUXppQXVtN1FHamVZWVNYclJkdzN5YWtnbW41R0plMGZJVERITXJ0U2xnREJOT21XQ3JRc21Pd1VMSnpycFNwTnVKNHczdDlpeU5PNGVXZHVNREhldXUvMU1GYlptMS81TEpzWUwrZDZqeDgzbXA4TzBkbUtQOWxsLzYrOGVaeGxlRDg3NXhLemRONEMycXp0ZkxmaWZXek9lTGxERzVCUE9SUVc1NUkwc25pSks4a3JUSjZIMWtFOHVaT1U5RytvOStneEhrTUJvekVhSjdMcVZyMEl5blNzV1IvNDVmQ2E2eGltRm5RYVQ0S0V5bUN6SUw5L2VrZ3Q2VU9pM0R2VEtYbXA2dHpMZWJRR1NTRW1TbmhlRU53dWJSRmwycUpxT01wWVRiVm9RMWp6amwwUG9GQ2NYV29oZTYrZ0dRdTZTR013TUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["park"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["squirrels"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["rats"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pigeons"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"WashingtonSq","2":"358","3":"1500","4":"8620"},{"1":"CentralPark","2":"546","3":"41320","4":"15000"},{"1":"ProspectPark","2":"439","3":"20003","4":"1939"},{"1":"BatteryPark","2":"344","3":"4057","4":"276"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3RyeSBhY2Nlc3NpbmcgdGhlIHZhbHVlcyByb3dzIDEsIDIsIGFuZCAzIG9mIGNvbHVtbiAxXG5gYGAifQ== -->
-<pre class="r"><code>#try accessing the values rows 1, 2, and 3 of column 1</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3RyeSBhY2Nlc3NpbmcgdGhlIHZhbHVlcyByb3dzIDEsIDIsIGFuZCAzIG9mIGNvbHVtbiAxXG5wYXJrc19kZltjKDE6MyksIDFdXG5gYGAifQ== -->
+<pre class="r"><code>#try accessing the values rows 1, 2, and 3 of column 1
+parks_df[c(1:3), 1]</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFdhc2hpbmd0b25TcSBDZW50cmFsUGFyayAgUHJvc3BlY3RQYXJrXG5MZXZlbHM6IEJhdHRlcnlQYXJrIENlbnRyYWxQYXJrIFByb3NwZWN0UGFyayBXYXNoaW5ndG9uU3FcbiJ9 -->
+<pre><code>[1] WashingtonSq CentralPark  ProspectPark
+Levels: BatteryPark CentralPark ProspectPark WashingtonSq</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>What if you wanted to share this data with a colleague, so they could do their own calculations? The nicest way would be to send them a csv. We can make csvs from data frames in R using <code>write.csv()</code>. Take a look at the documentation for this function.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB3cml0ZSBhIGNzdiBjYWxsZWQgJ3BhcmtzLmNzdicgd2l0aCB0aGUgZGF0YSBpbiBwYXJrc19kZlxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # write a csv called ‘parks.csv’ with the data in parks_df</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB3cml0ZSBhIGNzdiBjYWxsZWQgJ3BhcmtzLmNzdicgd2l0aCB0aGUgZGF0YSBpbiBwYXJrc19kZlxud3JpdGUuY3N2KHBhcmtzX2RmLCAncGFya3MuY3N2JylcbmBgYCJ9 -->
+<pre class="r"><code># write a csv called 'parks.csv' with the data in parks_df
+write.csv(parks_df, 'parks.csv')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1965,39 +2037,72 @@ parks_df_2</code></pre>
 <p>Let’s look at the <code>data.frame</code> again.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RyKHBhcmtzX2RmKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r str(parks_df)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVmlldyhwYXJrc19kZilcbmBgYCJ9 -->
+<pre class="r"><code>View(parks_df)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Let’s try to access the population of squirrels as a number.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGFya3NfZGZbLDNdXG5hcy5udW1lcmljKHBhcmtzX2RmWywzXSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r parks_df[,3] as.numeric(parks_df[,3])</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFya3NfZGYkc3F1aXJyZWxzXG5gYGAifQ== -->
+<pre class="r"><code>parks_df$squirrels</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM1OCA1NDYgNDM5IDM0NFxuTGV2ZWxzOiAzNDQgMzU4IDQzOSA1NDZcbiJ9 -->
+<pre><code>[1] 358 546 439 344
+Levels: 344 358 439 546</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMubnVtZXJpYyhwYXJrc19kZiRzcXVpcnJlbHMpXG5gYGAifQ== -->
+<pre class="r"><code>as.numeric(parks_df$squirrels)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIgNCAzIDFcbiJ9 -->
+<pre><code>[1] 2 4 3 1</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>As you can see, the character numbers are being converted not to the numbers they should be, but to their factor levels. I’m sure you can imagine how this could be a huge problem.</p>
 <p>When something is a factor and your want it to be a number, do this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYXMubnVtZXJpYyhhcy5jaGFyYWN0ZXIocGFya3NfZGZbLDNdKSkgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r as.numeric(as.character(parks_df[,3]))</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMubnVtZXJpYyhhcy5jaGFyYWN0ZXIocGFya3NfZGYkc3F1aXJyZWxzKSkgXG5gYGAifQ== -->
+<pre class="r"><code>as.numeric(as.character(parks_df$squirrels)) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM1OCA1NDYgNDM5IDM0NFxuIn0= -->
+<pre><code>[1] 358 546 439 344</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>By first going through <code>as.character</code> and THEN <code>as.numeric</code>, you preserve your entries as intended.</p>
-<p>Finally, if you want to change the values in the data frame, you must remember to reassign that column</p>
+<p>Finally, if you want to change the values in the data frame, you must remember to reassign that column back to the dataframe (running <code>as.numeric()</code>, or any other function, without using the assignment <code>&lt;-</code> doesn’t change the original!)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RyKHBhcmtzX2RmKVxucGFya3NfZGZbLDNdIDwtIGFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKHBhcmtzX2RmWywzXSkpIFxuc3RyKHBhcmtzX2RmKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r str(parks_df) parks_df[,3] &lt;- as.numeric(as.character(parks_df[,3])) str(parks_df)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMubnVtZXJpYyhhcy5jaGFyYWN0ZXIocGFya3NfZGYkc3F1aXJyZWxzKSkgXG5gYGAifQ== -->
+<pre class="r"><code>as.numeric(as.character(parks_df$squirrels)) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM1OCA1NDYgNDM5IDM0NFxuIn0= -->
+<pre><code>[1] 358 546 439 344</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKHBhcmtzX2RmKVxuYGBgIn0= -->
+<pre class="r"><code>str(parks_df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NCBvYnMuIG9mICA0IHZhcmlhYmxlczpcbiAkIHBhcmsgICAgIDogRmFjdG9yIHcvIDQgbGV2ZWxzIFwiQmF0dGVyeVBhcmtcIiwuLjogNCAyIDMgMVxuICQgc3F1aXJyZWxzOiBGYWN0b3Igdy8gNCBsZXZlbHMgXCIzNDRcIixcIjM1OFwiLFwiNDM5XCIsLi46IDIgNCAzIDFcbiAkIHJhdHMgICAgIDogbnVtICAxNTAwIDQxMzIwIDIwMDAzIDQwNTdcbiAkIHBpZ2VvbnMgIDogbnVtICA4NjIwIDE1MDAwIDE5MzkgMjc2XG4ifQ== -->
+<pre><code>'data.frame':   4 obs. of  4 variables:
+ $ park     : Factor w/ 4 levels &quot;BatteryPark&quot;,..: 4 2 3 1
+ $ squirrels: Factor w/ 4 levels &quot;344&quot;,&quot;358&quot;,&quot;439&quot;,..: 2 4 3 1
+ $ rats     : num  1500 41320 20003 4057
+ $ pigeons  : num  8620 15000 1939 276</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFya3NfZGYkc3F1aXJyZWxzIDwtIGFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKHBhcmtzX2RmJHNxdWlycmVscykpIFxuc3RyKHBhcmtzX2RmKVxuYGBgIn0= -->
+<pre class="r"><code>parks_df$squirrels &lt;- as.numeric(as.character(parks_df$squirrels)) 
+str(parks_df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0NCBvYnMuIG9mICA0IHZhcmlhYmxlczpcbiAkIHBhcmsgICAgIDogRmFjdG9yIHcvIDQgbGV2ZWxzIFwiQmF0dGVyeVBhcmtcIiwuLjogNCAyIDMgMVxuICQgc3F1aXJyZWxzOiBudW0gIDM1OCA1NDYgNDM5IDM0NFxuICQgcmF0cyAgICAgOiBudW0gIDE1MDAgNDEzMjAgMjAwMDMgNDA1N1xuICQgcGlnZW9ucyAgOiBudW0gIDg2MjAgMTUwMDAgMTkzOSAyNzZcbiJ9 -->
+<pre><code>'data.frame':   4 obs. of  4 variables:
+ $ park     : Factor w/ 4 levels &quot;BatteryPark&quot;,..: 4 2 3 1
+ $ squirrels: num  358 546 439 344
+ $ rats     : num  1500 41320 20003 4057
+ $ pigeons  : num  8620 15000 1939 276</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2006,38 +2111,60 @@ parks_df_2</code></pre>
 <p>Now, maybe we want to use these columns to find out something about parks in NYC. Maybe we want to find the average number of rats and pigeons in NYC parks.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiBzcXVpcnJlbHMgYW5kIHBpZ2VvbnMgZm9yIHBhcmtzIGluIE5ZQ1xuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # find the mean number of squirrels and pigeons for parks in NYC</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiByYXQgYW5kIHBpZ2VvbnMgZm9yIHBhcmtzIGluIE5ZQ1xubWVhbihwYXJrc19kZiRyYXRzKVxuYGBgIn0= -->
+<pre class="r"><code># find the mean number of rat and pigeons for parks in NYC
+mean(parks_df$rats)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE2NzIwXG4ifQ== -->
+<pre><code>[1] 16720</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihwYXJrc19kZiRwaWdlb25zKVxuYGBgIn0= -->
+<pre class="r"><code>mean(parks_df$pigeons)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDY0NTguNzVcbiJ9 -->
+<pre><code>[1] 6458.75</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We also want to know the amount of variation in pigeon and rat populations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjYWxjdWxhdGUgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiAtIHVzZSBnb29nbGUgdG8gaGVscCB5b3UgZmluZCBmdW5jdGlvbnNcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # calculate the standard deviation - use google to help you find functions</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjYWxjdWxhdGUgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiAtIHVzZSBnb29nbGUgdG8gaGVscCB5b3UgZmluZCBmdW5jdGlvbnNcbnNkKHBhcmtzX2RmJHJhdHMpXG5gYGAifQ== -->
+<pre class="r"><code># calculate the standard deviation - use google to help you find functions
+sd(parks_df$rats)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE4MzI5Ljc0XG4ifQ== -->
+<pre><code>[1] 18329.74</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2QocGFya3NfZGYkcGlnZW9ucylcbmBgYCJ9 -->
+<pre class="r"><code>sd(parks_df$pigeons)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDY3MzkuODkzXG4ifQ== -->
+<pre><code>[1] 6739.893</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>If we have many columns with numeric data, finding the mean of each of them individually could take a while. We can use the function <code>colMeans()</code> instead. Take a look at the documentation for <code>colMeans()</code></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB0cnkgdXNpbmcgY29sTWVhbnMoKSB0byBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiBzcXVpcnJlbHMgYW5kIHBpZ2VvbnMgZm9yIHBhcmtzIGluIE5ZQ1xuXG4jIGRvIHlvdSBydW4gaW50byBwcm9ibGVtcz8gd2h5PyBob3cgY291bGQgd2UgZ2V0IHdoYXQgd2Ugd2FudCB1c2luZyB0aGlzIGZ1bmN0aW9uP1xuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # try using colMeans() to find the mean number of squirrels and pigeons for parks in NYC</p>
-</div>
-</div>
-<div id="do-you-run-into-problems-why-how-could-we-get-what-we-want-using-this-function" class="section level1">
-<h1>do you run into problems? why? how could we get what we want using this function?</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0cnkgdXNpbmcgY29sTWVhbnMoKSB0byBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiByYXRzIGFuZCBwaWdlb25zIGZvciBwYXJrcyBpbiBOWUNcbiAgIyBjb2xNZWFucyhwYXJrc19kZilcbiAgIyBkb2Vzbid0IHdvcmsgYmVjYXVzZSBjYW4ndCB0YWtlIHRoZSBtZWFuIG9mIHN0cmluZ3Mgb3IgZmFjdG9ycyAoaS5lLiBwYXJrIG5hbWUgY29sdW1ucylcbiMgZG8geW91IHJ1biBpbnRvIHByb2JsZW1zPyB3aHk/IGhvdyBjb3VsZCB3ZSBnZXQgd2hhdCB3ZSB3YW50IHVzaW5nIHRoaXMgZnVuY3Rpb24/XG5jb2xNZWFucyhwYXJrc19kZlsgLCAzOjRdKVxuYGBgIn0= -->
+<pre class="r"><code># try using colMeans() to find the mean number of rats and pigeons for parks in NYC
+  # colMeans(parks_df)
+  # doesn't work because can't take the mean of strings or factors (i.e. park name columns)
+# do you run into problems? why? how could we get what we want using this function?
+colMeans(parks_df[ , 3:4])</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIHJhdHMgIHBpZ2VvbnMgXG4xNjcyMC4wMCAgNjQ1OC43NSBcbiJ9 -->
+<pre><code>    rats  pigeons 
+16720.00  6458.75 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm8gUiBDb3Vyc2UsIFdvcmtzaG9wIDU6IERhdGFmcmFtZXMiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBmb3JtYXR0aW5nIGRhdGEgZm9yIGFuYWx5c2lzIGFuZCByZWFkaW5nIGV4Y2VsIGRhdGEgaW50byBSIGRhdGFmcmFtZXMKICAgIHwgICAtIHNlbGVjdGluZyByb3dzIGFuZCBjb2x1bW5zIG9mIGludGVyZXN0CiAgICB8ICAgLSBhZGRpbmcgY29sdW1ucyB0byBkYXRhZnJhbWVzCiAgICB8ICAgLSBleHBvcnRpbmcgZGF0YSBmcm9tIFIKICAgIHwgICAtIHBlcmZvcm1pbmcgb3BlcmF0aW9ucyBvbiBpbmRpdmlkdWFsIGNvbHVtbnMgb2YgZGF0YQphdXRob3I6CiAgLSBFdWdlbmUgUGxhdnNraW4KICAtIEdyYWNlIEF2ZWNpbGxhCiAgLSBUb2JpIFNocmFpbmsKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGRlcHRoOiAzCiAgICB0aWR5OiB5ZXMKICAgIHRvYzogeWVzCi0tLQoqKlNvbHV0aW9ucyB0byB0aGlzIHdvcmtzaG9wIGNhbiBiZSBmb3VuZCBbaGVyZV0oU29sdXRpb25zX1dvcmtzaG9wXzUubmIuaHRtbCkqKgoKIyBSZXZpZXcKCmBgYHtyfQpyZXZpZXdfdmVjdG9yIDwtIGMoMSwgMi42LCBOQSwgNC45OCwgMS41LCBOQSkKCiMgcnVuIGEgZnVuY3Rpb24gdGhhdCB3aWxsIGRldGVybWluZSB3aGljaCBvZiB0aGUgdmFsdWVzIGluIHJldmlld192ZWN0b3IgaXMgYQojIG1pc3NpbmcgdmFsdWUKCiMgcnVuIGFuIG9wZXJhdGlvbiB0aGF0IHdpbGwgZGV0ZXJtaW5lIHdoaWNoIG9mIHRoZSBudW1iZXJzIGluIHJldmlld192ZWN0b3IgaXMKIyBncmVhdGVyIHRoYW4gMiBhbmQgbGVzcyB0aGFuIDQKCiMgdXNlIHRoZSBsb2dpY2FsIHZlY3RvciBhYm92ZSB0byBjcmVhdGUgYSBzdWJ2ZWN0b3Igb2YgcmV2aWV3X3ZlY3RvciB0aGF0IG9ubHkKIyBpbmNsdWRlcyB0aGUgZWxlbWVudHMgb2YgcmV2aWV3X3ZlY3RvciB0aGF0IGFyZSBncmVhdGVyIHRoYW4gMiBhbmQgbGVzcyB0aGFuIDQKCgoKbGVhZl9udW1iZXIgPC0gYyg1LCA4LCA1LCAxMSwgNCwgNSwgOCwgMTMsIDEwLCA0LCA3KQoKIyBtYWtlIGEgbG9naWNhbCB2ZWN0b3IgY2FsbGVkIG1hbnlfbGVhdmVzIHRoYXQgdGVsbHMgeW91IHdoZXRoZXIgZWFjaCBwb3NpdGlvbgojIGluIGxlYWZfbnVtYmVyIGlzIGdyZWF0ZXIgdGhhbiAxMAoKIyB1c2UgbWFueV9sZWF2ZXMgdG8gc2V0IGVhY2ggdmFsdWUgb2YgbGVhZl9udW1iZXIgb3ZlciAxMCB0byBpbmZpbml0eSAoSW5mKQoKYGBgCgojIERhdGEgRnJhbWVzOiBSZWFkaW5nIGluIGFuZCBtYW5pcHVsYXRpbmcgZGF0YSwgd3JpdGluZyBkYXRhCgpTbyBmYXIsIGV2ZXJ5dGhpbmcgd2UndmUgYmVlbiBkb2luZyBpbiBSIGhhcyBpbnZvbHZlZCB2ZWN0b3JzLiBIb3dldmVyLCB3ZSBoYXZlbid0IHlldCBsZWFybmVkIGFib3V0IHRoZSBtb3N0IHVzZWZ1bCBkYXRhIHN0cnVjdHVyZSBpbiBSOiBkYXRhIGZyYW1lcy4KCkRhdGEgZnJhbWVzIGFyZSBlc3NlbnRpYWxseSBqdXN0IHRhYmxlcy4gVGhleSBoYXZlIHJvd3MgYW5kIGNvbHVtbnMsIGFuZCBpZiB5b3Ugc2V0IHlvdXIgZGF0YSB1cCByaWdodCwgdGhleSBtYWtlIGl0ICppbmNyZWRpYmx5KiBlYXN5IHRvIGV4cGxvcmUgeW91ciBkYXRhLiBSIGhhcyBhIHRvbiBvZiBvcGVyYXRpb25zIHRoYXQgYXJlIHNwZWNpYWxpemVkIGluIHJlYWRpbmcgZGF0YSBmcmFtZXMgYW5kIGVpdGhlciBwbG90dGluZyB0aGVtIGluIGFuIGVhc3kgd2F5LCBvciBzdW1tYXJpemluZyB0aGUgZGF0YSBpbnNpZGUsIGFuZCB3ZSdyZSBnb2luZyB0byBiZSBzcGVuZGluZyB0aGUgbmV4dCBjb3VwbGUgb2YgZGF5cyBsZWFybmluZyBhYm91dCB0aG9zZS4KCmBgYHtyfQppZiAoZGlyLmV4aXN0cygnY2xhc3NfZmlndXJlcycpKXsKICBsaWJyYXJ5KGtuaXRyKQogIGluY2x1ZGVfZ3JhcGhpY3MoJ2NsYXNzX2ZpZ3VyZXMvZGZfaWxsdXN0cmF0aW9uLnBuZycpCn0KYGBgCgojIyBSZWFkaW5nIGluIHRhYmxlcyBmcm9tIGV4Y2VsCgpBIGxvdCBvZiB0aW1lcywgaXQncyBub3QgcmVhbGx5IGNvbnZlbmllbnQgdG8gZW50ZXIgeW91ciBkYXRhIGluIFIuIFdoZW4gY29sbGVjdGluZyBkYXRhIGJ5IGhhbmQsIGl0IGNhbiBiZSByZWFsbHkgY29udmVuaWVudCB0byB0eXBlIGl0IGludG8gZXhjZWwgKG9yIGdvb2dsZSBzaGVldHMpLiBBbHRob3VnaCB0aGVyZSBpcyBhIHNwZWNpYWwgcGFja2FnZSBpbiBSIHRoYXQgY2FuIHJlYWQgZXhjZWwgZm9ybWF0IGZpbGVzICgqKi54bHN4KiopLCB0aGlzIGlzIG5vdCBjb21tb25seSB1c2VkLiBJbnN0ZWFkLCB3ZSB1c3VhbGx5IHNhdmUgZmlsZXMgaW4gKiouY3N2KiogZm9ybWF0LCB3aGljaCB0aHJvd3Mgb3V0IGFsbCBvZiB0aGUgc3BlY2lhbCBmb3JtYXR0aW5nIGV4Y2VsIGRvZXMgYW5kIGp1c3Qga2VlcHMgdGhlIGRhdGEgaXRzZWxmLgoKKipjc3YqKiBzdGFuZHMgZm9yICpjb21tYS1zZXBhcmF0ZWQgdmFsdWVzKiwgYW5kIHRoYXQncyBqdXN0IHdoYXQgdGhleSBhcmUuIFRoZXNlIGZpbGVzIGNhbiBiZSBlYXNpbHkgb3BlbmVkIGluIGV4Y2VsIG9yIGdvb2dsZSBzaGVldHMsIGJ1dCBpZiB5b3Ugb3BlbiB0aGVtIGluIG5vdGVwYWQsIHlvdSBjYW4gc2VlIHRoYXQgdGhleSdyZSByZWFsbHkganVzdCByb3dzIG9mIG51bWJlcnMgYW5kIHdvcmRzIHNlcGFyYXRlZCBieS4uLiB5b3UgZ3Vlc3NlZCBpdCwgY29tbWFzLgoKWW91IHNob3VsZCBoYXZlIGEgZGF0YXNldCBpbiBjc3YgZm9ybWF0IGNhbGxlZCAqaXJpcy5jc3YqLiBUaGlzIGlzIGEgc2V0IG9mIGluZm9ybWF0aW9uIG9uIGZsb3dlciBzdHJ1Y3R1cmUgY29sbGVjdGVkIGZyb20gcGxhbnRzIG9mIDMgaXJpcyBzcGVjaWVzLiBGb2xsb3cgYWxvbmcgd2l0aCB0aGlzIGZpbGUgYXMgd2UgZ28gdGhyb3VnaCB0aGUgcnVsZXMuIFRoZSBjb2RlIGJlbG93IHdpbGwgb25seSB3b3JrIGlmIHlvdSBoYXZlIGlyaXMuY3N2IHNhdmVkIGluIHRoZSBzYW1lIGZvbGRlciBhcyB0aGlzIGZpbGUuCgpGaXJzdCwgbGV0J3MgZ2V0IFIgdG8gcmVhZCBpbiB0aGUgaXJpcyBkYXRhLiBZb3UgY2FuIGRvd25sb2FkIGl0IGZyb20gW2hlcmVdKGh0dHBzOi8vZ2l0aHViLmNvbS9wbGF2c2tpbi9JbnRyb19SX0NvdXJzZS9ibG9iL21hc3Rlci9pcmlzLmNzdik7IHJpZ2h0LWNsaWNrIChvciwgb24gYSBNYWMsIGNvbnRyb2wtY2xpY2spIHRoZSAnUmF3IiBidXR0b24gb24gdGhlIHVwcGVyIHJpZ2h0LCBzZWxlY3QgInNhdmUgbGluayBhcy4uLiIsIGFuZCBkb3dubG9hZCBpdCBpbnRvIHRoZSBzYW1lIGZvbGRlciBhcyB0aGlzIHdvcmtzaG9wIGZpbGUuCmBgYHtyfQojIHRoaXMgaXMgYWN0dWFsbHkgYSBidWlsdC1pbiBkYXRhc2V0IGluIFIsIGJ1dCBJIHNhdmVkIGl0IGFzIGEgY3N2IHNvIHdlIGNhbgojIHByYWN0aWNlIGltcG9ydGluZwppcmlzX2RmIDwtIHJlYWQuY3N2KCdpcmlzLmNzdicpClZpZXcoaXJpc19kZikKYGBgCgpUaGVyZSBhcmUgc29tZSBnb29kIHByYWN0aWNlcyBmb3IgaG93IHRvIG9yZ2FuaXplIGFuZCByZWNvcmQgeW91ciBkYXRhLCBhbmQgZm9sbG93aW5nIHRoZXNlIHdpbGwgbWFrZSB5b3VyIGxpZmUgKk1VQ0gqIGVhc2llciB3aGVuIHlvdSB0cnkgdG8gYW5hbHl6ZSB5b3VyIGRhdGEuIEZvbGxvd2luZyB0aGVzZSBydWxlcyBtZWFucyB0aGF0IFIgd2lsbCBiZSBhYmxlIHRvIGVhc2lseSByZWFkIHlvdSBkYXRhLCBhbmQgdGhhdCB0aGUgZGF0YSBpcyBpbW1lZGlhdGVseSBzZXQgdXAgaW4gc3VjaCBhIHdheSB0aGF0IHRoZSBidWlsdC1pbiBSIGZ1bmN0aW9ucyBmb3IgcHJvY2Vzc2luZyBkYXRhIGNhbiBlYXNpbHkgd29yayB3aXRoIGl0LgoKKiBHaXZlIGVhY2ggY29sdW1uIGEgc2hvcnQsIGluZm9ybWF0aXZlIHRpdGxlLiBBdm9pZCBzcGFjZXMgYW5kIHdlaXJkIHN5bWJvbHMvcHVuY3R1YXRpb24uIFlvdSBjYW4gdXNlIGxldHRlcnMsIG51bWJlcnMsIHBlcmlvZHMsIHVuZGVyc2NvcmVzICggXyApIGFuZCBoeXBoZW5zLiAqTkVWRVIqIHVzZSBjb21tYXMgaW4geW91ciBkYXRhIGVudHJ5LgoKKiBZb3UgY2FuIGFsc28gbmFtZSByb3dzLCBidXQgSSBzdWdnZXN0IGF2b2lkaW5nIHRoaXMgZm9yIG5vdywgc2luY2UgeW91IHdpbGwgbmVlZCB0byBwcm92aWRlIGEgc3BlY2lhbCBhcmd1bWVudCB0byBgcmVhZC5jc3ZgIGlmIHlvdSBkbyB0aGlzLgoKKiBLZWVwIGEgc2luZ2xlIGNvbHVtbiBhcyBvbmUgZGF0YSB0eXBlIChlLmcuIGEgY29sdW1uIGNhbiBjb250YWluIHN0cmluZ3MsIG9yIG51bWJlcnMsIG9yIGxvZ2ljYWxzKS4gUiB3aWxsIHVzdWFsbHkga25vdyB3aGljaCBpcyB3aGljaCwgYW5kIHRyZWF0IHRoZSBkYXRhIGFjY29yZGluZ2x5LgoKKiBOb3RpY2UgdGhhdCBpbiB0aGUgaXJpcyBkYXRhZnJhbWUsIGV2ZXJ5IHJvdyBob2xkcyBhIHNpbmdsZSBvYnNlcnZhdGlvbi4gVGhhdCBpcywgZGF0YSBvbiBlYWNoIHNpbmdsZSBkYXRhIHBvaW50IChwbGFudCkgaXMgb25lIHJvdywgYW5kIGVhY2ggaW5kaXZpZHVhbCBwaWVjZSBvZiBpbmZvcm1hdGlvbiBhYm91dCBpdCBpcyBvbmUgY29sdW1uIChlLmcuIGhvdyB3aWRlIHdlcmUgaXRzIHBldGFscz8gV2hhdCBzcGVjaWVzIGRpZCB0aGlzIHBsYW50IGJlbG9uZyB0bz8pCgpUaGUgbGFzdCBwb2ludCBvbiB0aGlzIGxpc3QgaW52b2x2ZXMgdGhpbmtpbmcgYWJvdXQgd2hhdCBjb25zdGl0dXRlcyBhbiAnb2JzZXJ2YXRpb24nIGluIHlvdXIgZGF0YS4gVGhpcyBjYW4gc2VlbSBzdWJqZWN0aXZlISBMZXQncyBzYXkgeW91J3JlIHRyYWNraW5nIHBsYW50IGdyb3d0aCBvdmVyIHRpbWU6IGlzIGEgc2luZ2xlIG9ic2VydmF0aW9uIG9uZSBwbGFudCwgb3Igb25lIHRpbWVwb2ludD8gQXMgeW91IHByb2dyYW0sIHlvdSdsbCBzdGFydCBnZXR0aW5nIGFuIGludHVpdGl2ZSBmZWVsaW5nIGZvciBiZXR0ZXIgYW5kIHdvcnNlIHdheXMgdG8gb3JnYW5pemUgZGF0YS4gQnV0IHJlbWVtYmVyIHRoYXQgZGF0YSBjYW4gYWx3YXlzIGJlIHJlLW9yZ2FuaXplZCBpbiBSIGlmIHlvdSBkb24ndCBsaWtlIGhvdyB5b3Ugb3JpZ2luYWxseSBkaWQgaXQgKG9yIGlmIHNvbWVvbmUgZWxzZSBjb2xsZWN0ZWQgdGhlIGRhdGEhKSBUaGVzZSBwcmluY2lwbGVzIG9mIGRhdGEgb3JnYW5pemF0aW9uIGFyZSBjYWxsZWQgKnRpZHkqIGRhdGEsIGFuZCB0aGVyZSBpcyAqaHVnZWx5KiB1c2VmdWwgcGFja2FnZSwgKip0aWR5cioqIHRoYXQgY29udGFpbnMgZnVuY3Rpb25zIHRvIHJlLW9yZ2FuaXplIGFuZCB0aWR5IHVwIHlvdXIgZGF0YS4gV2Ugd29uJ3QgY292ZXIgaXQgaW4gdGhpcyBjbGFzcywgYnV0IEkgd2FudCB0byBzaGFyZSBhIFtsaW5rXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvcGFja2FnZXMvdGlkeXIvdmlnbmV0dGVzL3RpZHktZGF0YS5odG1sKSB3aXRoIHNvbWUgaW5mbyBpbiBjYXNlIHlvdSBjb250aW51ZSBwcm9ncmFtbWluZyBpbiB0aGUgZnV0dXJlIGFuZCBmaW5kIHRoYXQgeW91IG5lZWQgaXQuCgojIyBTZWxlY3RpbmcgZGF0YSBmcm9tIGRhdGEgZnJhbWVzOiByb3cgbnVtYmVycyBhbmQgY29sdW1uIG51bWJlcnMgYW5kICQKCkxldCdzIHNheSB3ZSB3YW50ZWQgdG8gY2FsY3VsYXRlIHRoZSBtZWFuIHBldGFsIHdpZHRoIG9mIGFsbCB0aGUgaXJpc2VzIG1lYXN1cmVkIGluIHRoZSBpcmlzIGRhdGFzZXQuIEhvdyBjYW4gd2UgZG8gdGhpcz8gV2UgbmVlZCB0byBzZWxlY3QgdGhlIHBldGFsIHdpZHRoIGNvbHVtbi4gVGhlcmUgYXJlIGEgY291cGxlIG9mIHdheXMgdG8gZG8gdGhpcy4gVGhlIGVhc2llc3QgYW5kIG1vc3QgY29tbW9uIG9uZSBpcyB1c2luZyBgJGAuCgpgYGB7cn0KIyBwcmludCBvdXQgYWxsIHRoZSBzZXBhbCBsZW5ndGhzCnByaW50KGlyaXNfZGYkU2VwYWwuTGVuZ3RoKQoKIyBnZXQgdGhlIG1lYW4gb2YgdGhlIHBldGFsIHdpZHRocwoKYGBgCgpXZSBjYW4gYWxzbyB1c2UgaW5kZXhpbmcgdG8gZ2V0IGEgc3BlY2lmaWMgcm93IGFuZCBjb2x1bW4gcG9zaXRpb24gaW4gdGhlIGRhdGEgZnJhbWUuIFJlbWVtYmVyIHRoYXQgd2hlbiB3ZSB1c2VkIGluZGV4aW5nIGZvciB2ZWN0b3JzLCB3ZSBwdXQgdGhlIG5lY2Vzc2FyeSBwb3NpdGlvbiAob3IgdmVjdG9yIG9mIHBvc2l0aW9ucykgaW4gc3F1YXJlIGJyYWNrZXRzIGFmdGVyIHRoZSBuYW1lIG9mIHRoZSB2ZWN0b3IuIEluIGEgZGF0YSBmcmFtZSwgd2UgbmVlZCB0byBzcGVjaWZ5IGJvdGggdGhlIHJvdyBwb3NpdGlvbihzKSwgYW5kIHRoZSBjb2x1bW4gcG9zaXRpb24ocykuCgpXaGVuIHVzaW5nIGluZGljZXMgdG8gc3BlY2lmeSBwb3NpdGlvbiBpbiBhIGRhdGEgZnJhbWUsICoqcm93cyBmaXJzdCwgY29sdW1ucyBzZWNvbmQqKgoKYGBge3J9CiMgR2V0IHRoZSB2YWx1ZSBpbiB0aGUgc2Vjb25kIHJvdyBhbmQgdGhpcmQgY29sdW1uIGluIHRoZSBpcmlzIGRhdGFzZXQKcHJpbnQoaXJpc19kZlsyLCAzXSkKCiMgR2V0IHRoZSB2YWx1ZXMgaW4gdGhlIDJuZCB0byA1dGggcm93cyBpbiB0aGUgZmlmdGggY29sdW1uIGluIGlyaXNfZGYKCmBgYAoKSW4gYWRkaXRpb24gdG8gdXNpbmcgbnVtZXJpYyBpbmRpY2VzLCB5b3UgY2FuIGFsc28gdXNlIG5hbWVzIG9mIGNvbHVtbnMgKG9yIHJvd3MsIGlmIHRoZXkncmUgbmFtZWQhKQpgYGB7cn0KcHJpbnQoaXJpc19kZlsyLCAnUGV0YWwuTGVuZ3RoJ10pCmBgYAoKRmluYWxseSwgaWYgeW91IHdhbnQgdG8gZ2V0ICpldmVyeSogcm93IG9yICpldmVyeSogY29sdW1uLCBqdXN0IGxlYXZlIHRoYXQgaW5kZXggYmxhbmsuCmBgYHtyfQojIGdldCBldmVyeSBlbGVtZW50IGZyb20gMm5kIGNvbHVtbiAoc2FtZSBhcyBpcmlzX2RmJFNlcGFsLldpZHRoKQpwcmludChpcmlzX2RmWyAsIDJdKQoKIyBnZXQgZXZlcnkgdmFsdWUgaW4gdGhlIDZ0aCByb3cgb2YgaXJpc19kZgoKYGBgCgojIyBDcmVhdGluZyBuZXcgY29sdW1ucyBmcm9tIG9wZXJhdGlvbnMgb24gb3RoZXIgY29sdW1ucwoKQSBsb3Qgb2YgdGltZXMsIHdlIG5lZWQgdG8gcHJvY2VzcyB0aGUgZGF0YSB3ZSBoYXZlIGluIG9yZGVyIGZvciBpdCB0byBiZSBpbnRlcmVzdGluZyB0byB1cy4gWW91IGNhbiBpbWFnaW5lIGEgc2NlbmFyaW8gaW4gd2hpY2ggd2UnZCB3YW50IHRvIGRvIHRoaXMgaW4gdGhlIGlyaXMgZGF0YXNldC4gV2UgaGF2ZSBhIGxpc3Qgb2YgbWVhc3VyZXMgcGV0YWwgd2lkdGhzIGFuZCBsZW5ndGhzIGZyb20gdmFyaW91cyBzcGVjaWVzLCBhbmQgbWF5YmUgd2Ugd2FudCB0byBldmVudHVhbGx5IGludmVzdGlnYXRlIGhvdyB0aGVzZSB2YXJ5IGFjcm9zcyBzcGVjaWVzLiBCdXQgdGhlIHByb2JsZW0gaXMgdGhhdCBldmVuIHdpdGhpbiBhIHNwZWNpZXMsIHNvbWUgZmxvd2VycyBqdXN0IGhhcHBlbiB0byBiZSBsYXJnZXIsIGJ5IGNoYW5jZS4gVGhlc2Ugd291bGQgaGF2ZSBCT1RIIGhpZ2hlciBwZXRhbCBsZW5ndGhzIGFuZCB3aWR0aHMsIG1ha2luZyBvdXIgZGF0YXNldCBub2lzaWVyLiBNYXliZSB3aGF0IHdlIHJlYWxseSBjYXJlIGFib3V0IGlzIHRoZSByYXRpbyBvZiBwZXRhbCBsZW5ndGggdG8gd2lkdGg/IFIgbWFrZXMgY2FsY3VsYXRpbmcgdGhpcyBlYXN5LgoKYGBge3J9CiMgcmVtZW1iZXIgdGhhdCB0byBzcGVjaWZ5IGEgY29sdW1uLCB3ZSBjYW4gdXNlICQuIFdlIGNhbiBhbHNvIHVzZSB0aGlzIHRvCiMgY3JlYXRlIGEgbmV3IGNvbHVtbiwgUGV0YWwuUmF0aW8KaXJpc19kZiRQZXRhbC5SYXRpbyA8LSBpcmlzX2RmJFBldGFsLkxlbmd0aCAvIGlyaXNfZGYkUGV0YWwuV2lkdGgKCmBgYAoKIyMgQ3JlYXRpbmcgbmV3IGRhdGEgZnJhbWVzIGZyb20gc2NyYXRjaCBhbmQgd3JpdGluZyB0aGVtCgpTb21ldGltZXMsIHlvdSB3aWxsIHdhbnQgdG8gY3JlYXRlIGEgYnJhbmQgbmV3IGRhdGEgZnJhbWUgZnJvbSBzY3JhdGNoLiBUaGVyZSBhcmUgc2V2ZXJhbCB3YXlzIHRvIGRvIHRoaXMuIE9uZSB3YXkgaXMgdG8gY3JlYXRlIHZlY3RvcnMgZm9yIGVhY2ggY29sdW1uLCBhbmQgdGhlbiBjb21iaW5lIHRoZW0gdG9nZXRoZXIgaW4gYSBkYXRhIGZyYW1lLiBGb3IgZXhhbXBsZSwgbGV0J3MgaW1hZ2luZSB3ZSBoYXZlIGludmVzdGlnYXRlZCB0aGUgcG9wdWxhdGlvbnMgb2Ygc3F1aXJyZWxzIGFuZCBwaWdlb25zIGluIDQgcGFya3MgaW4gTllDLgoKV2UgY2FuIG1ha2UgMyB2ZWN0b3JzLCBvbmUgd2l0aCB0aGUgbmFtZXMgb2YgdGhlIHBhcmtzLCBvbmUgd2l0aCB0aGUgcG9wdWxhdGlvbiBvZiBzcXVpcnJlbHMsIGFuZCBvbmUgd2l0aCB0aGUgcG9wdWxhdGlvbiBvZiBwaWdlb25zLiAKYGBge3J9CnBhcmsgPC0gYygiV2FzaGluZ3RvblNxIiwgIkNlbnRyYWxQYXJrIiwgIlByb3NwZWN0UGFyayIsICJCYXR0ZXJ5UGFyayIpCnBpZ2VvbnMgPC0gYyg4LjYyZTMsIDEuNWU0LCAxOTM5LCAyNzYpCnJhdHMgPC0gYygxNTAwLCA0MTMyMCwgMjAwMDMsIDQwNTcpCnNxdWlycmVsczwtIGMoIjM1OCIsICI1NDYiLCAiNDM5IiwgIjM0NCIpCmBgYApUaGVuLCB3ZSBjYW4gdXNlIHRoZSBmdW5jdGlvbiBgZGF0YS5mcmFtZSgpYCB0byB0dXJuIHRoZXNlIGludG8gYSBzaW5nbGUgZGF0YSBmcmFtZS4gVGhlIHBvc2l0aW9ucyBpbiB0aGUgdmVjdG9ycyB3aWxsIGNvcnJlc3BvbmQgdG8gcm93cywgYW5kIHRoZSBuYW1lcyBvZiB0aGUgdmVjdG9ycyB3aWxsIGJlY29tZSB0aGUgY29sdW1uIG5hbWVzLgpgYGB7cn0KcGFya3NfZGYgPC0gZGF0YS5mcmFtZShwYXJrLCBzcXVpcnJlbHMsIHJhdHMsIHBpZ2VvbnMpCnBhcmtzX2RmCgojIGFub3RoZXIgY29tbW9uIHdheSB0byBkbyB0aGUgc2FtZSB0aGluZwpwYXJrc19kZl8yIDwtCiAgZGF0YS5mcmFtZSgKICAgIHBhcmsgPSBjKCJXYXNoaW5ndG9uU3EiLCAiQ2VudHJhbFBhcmsiLCAiUHJvc3BlY3RQYXJrIiwgIkJhdHRlcnlQYXJrIiksCiAgICBzcXVpcnJlbHMgPSBjKCIzNTgiLCAiNTQ2IiwgIjQzOSIsICIzNDQiKSwKICAgIHJhdHMgPSBjKDE1MDAsIDQxMzIwLCAyMDAwMywgNDA1NyksCiAgICBwaWdlb25zID0gYyg4LjYyZTMsIDEuNWU0LCAxOTM5LCAyNzYpCiAgICApCnBhcmtzX2RmXzIKYGBgCgpgYGB7cn0KI3RyeSBhY2Nlc3NpbmcgdGhlIHZhbHVlcyByb3dzIDEsIDIsIGFuZCAzIG9mIGNvbHVtbiAxCmBgYAoKV2hhdCBpZiB5b3Ugd2FudGVkIHRvIHNoYXJlIHRoaXMgZGF0YSB3aXRoIGEgY29sbGVhZ3VlLCBzbyB0aGV5IGNvdWxkIGRvIHRoZWlyIG93biBjYWxjdWxhdGlvbnM/IFRoZSBuaWNlc3Qgd2F5IHdvdWxkIGJlIHRvIHNlbmQgdGhlbSBhIGNzdi4gV2UgY2FuIG1ha2UgY3N2cyBmcm9tIGRhdGEgZnJhbWVzIGluIFIgdXNpbmcgYHdyaXRlLmNzdigpYC4gVGFrZSBhIGxvb2sgYXQgdGhlIGRvY3VtZW50YXRpb24gZm9yIHRoaXMgZnVuY3Rpb24uCgpgYGB7cn0KIyB3cml0ZSBhIGNzdiBjYWxsZWQgJ3BhcmtzLmNzdicgd2l0aCB0aGUgZGF0YSBpbiBwYXJrc19kZgpgYGAKCiMjIFdhdGNoIG91dCBmb3IgZmFjdG9ycyEKWW91IG1heSBoYXZlIG5vdGljZWQgdGhhdCBhY2Nlc3NpbmcgdGhlIHBhcmsgY29sdW1uIGdhdmUgdXMgc29tZXRoaW5nIHRoYXQgaW52b2x2ZWQgImxldmVscyIuIFRoZXNlIGFyZSBiZWNhdXNlIHRoZXkncmUgYWN0dWFsbHkgbm90IGNoYXJhY3RlcnMsIGJ1dCBzb21ldGhpbmcgY2FsbGVkIGZhY3RvcnMuIEZhY3RvcnMgYXJlIGNhdGVnb3JpY2FsIHZhcmlhYmxlcy4gVGhlc2UgYXJlIHZlcnkgaW1wb3J0YW50IGZvciBzb21lIHR5cGVzIG9mIHN0YXRpc3RpY2FsIG1vZGVscywgYnV0IHRoZXkgY2FuIGJlIGEgcHJvYmxlbSBpZiB5b3UgYXJlIGV4cGVjdGluZyBjaGFyYWN0ZXJzIG9yIG51bWJlcnMuCgpMZXQncyBsb29rIGF0IHRoZSBgZGF0YS5mcmFtZWAgYWdhaW4uCmBgYHtyfQpWaWV3KHBhcmtzX2RmKQpgYGAKCkxldCdzIHRyeSB0byBhY2Nlc3MgdGhlIHBvcHVsYXRpb24gb2Ygc3F1aXJyZWxzIGFzIGEgbnVtYmVyLgoKYGBge3J9CnBhcmtzX2RmJHNxdWlycmVscwphcy5udW1lcmljKHBhcmtzX2RmJHNxdWlycmVscykKYGBgCgpBcyB5b3UgY2FuIHNlZSwgdGhlIGNoYXJhY3RlciBudW1iZXJzIGFyZSBiZWluZyBjb252ZXJ0ZWQgbm90IHRvIHRoZSBudW1iZXJzIHRoZXkgc2hvdWxkIGJlLCBidXQgdG8gdGhlaXIgZmFjdG9yIGxldmVscy4gSSdtIHN1cmUgeW91IGNhbiBpbWFnaW5lIGhvdyB0aGlzIGNvdWxkIGJlIGEgaHVnZSBwcm9ibGVtLgoKV2hlbiBzb21ldGhpbmcgaXMgYSBmYWN0b3IgYW5kIHlvdXIgd2FudCBpdCB0byBiZSBhIG51bWJlciwgZG8gdGhpczoKCmBgYHtyfQphcy5udW1lcmljKGFzLmNoYXJhY3RlcihwYXJrc19kZiRzcXVpcnJlbHMpKSAKYGBgCgpCeSBmaXJzdCBnb2luZyB0aHJvdWdoIGBhcy5jaGFyYWN0ZXJgIGFuZCBUSEVOIGBhcy5udW1lcmljYCwgeW91CnByZXNlcnZlIHlvdXIgZW50cmllcyBhcyBpbnRlbmRlZC4KCkZpbmFsbHksIGlmIHlvdSB3YW50IHRvIGNoYW5nZSB0aGUgdmFsdWVzIGluIHRoZSBkYXRhIGZyYW1lLCB5b3UgbXVzdCByZW1lbWJlciB0byByZWFzc2lnbiB0aGF0IGNvbHVtbgoKYGBge3J9CmFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKHBhcmtzX2RmJHNxdWlycmVscykpIApzdHIocGFya3NfZGYpCnBhcmtzX2RmWywzXSA8LSBhcy5udW1lcmljKGFzLmNoYXJhY3RlcihwYXJrc19kZiRzcXVpcnJlbHMpKSAKc3RyKHBhcmtzX2RmKQpgYGAKCiMjIENhbGN1bGF0ZSBjb2x1bW4gbWVhbnMsIHN0YW5kYXJkIGRldmlhdGlvbnMsIHN0YW5kYXJkIGVycm9ycwoKTm93LCBtYXliZSB3ZSB3YW50IHRvIHVzZSB0aGVzZSBjb2x1bW5zIHRvIGZpbmQgb3V0IHNvbWV0aGluZyBhYm91dCBwYXJrcyBpbiBOWUMuIE1heWJlIHdlIHdhbnQgdG8gZmluZCB0aGUgYXZlcmFnZSBudW1iZXIgb2YgcmF0cyBhbmQgcGlnZW9ucyBpbiBOWUMgcGFya3MuCgpgYGB7cn0KIyBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiByYXRzIGFuZCBwaWdlb25zIGZvciBwYXJrcyBpbiBOWUMKYGBgCgpXZSBhbHNvIHdhbnQgdG8ga25vdyB0aGUgYW1vdW50IG9mIHZhcmlhdGlvbiBpbiBwaWdlb24gYW5kIHJhdCBwb3B1bGF0aW9ucy4KCmBgYHtyfQojIGNhbGN1bGF0ZSB0aGUgc3RhbmRhcmQgZGV2aWF0aW9uIC0gdXNlIGdvb2dsZSB0byBoZWxwIHlvdSBmaW5kIGZ1bmN0aW9ucwpgYGAKCklmIHdlIGhhdmUgbWFueSBjb2x1bW5zIHdpdGggbnVtZXJpYyBkYXRhLCBmaW5kaW5nIHRoZSBtZWFuIG9mIGVhY2ggb2YgdGhlbSBpbmRpdmlkdWFsbHkgY291bGQgdGFrZSBhIHdoaWxlLiBXZSBjYW4gdXNlIHRoZSBmdW5jdGlvbiBgY29sTWVhbnMoKWAgaW5zdGVhZC4gVGFrZSBhIGxvb2sgYXQgdGhlIGRvY3VtZW50YXRpb24gZm9yIGBjb2xNZWFucygpYAoKYGBge3J9CiMgdHJ5IHVzaW5nIGNvbE1lYW5zKCkgdG8gZmluZCB0aGUgbWVhbiBudW1iZXIgb2YgcmF0cyBhbmQgcGlnZW9ucyBmb3IgcGFya3MgaW4gTllDCgojIGRvIHlvdSBydW4gaW50byBwcm9ibGVtcz8gd2h5PyBob3cgY291bGQgd2UgZ2V0IHdoYXQgd2Ugd2FudCB1c2luZyB0aGlzIGZ1bmN0aW9uPwpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm8gUiBDb3Vyc2UsIFdvcmtzaG9wIDU6IERhdGFmcmFtZXMiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBmb3JtYXR0aW5nIGRhdGEgZm9yIGFuYWx5c2lzIGFuZCByZWFkaW5nIGV4Y2VsIGRhdGEgaW50byBSIGRhdGFmcmFtZXMKICAgIHwgICAtIHNlbGVjdGluZyByb3dzIGFuZCBjb2x1bW5zIG9mIGludGVyZXN0CiAgICB8ICAgLSBhZGRpbmcgY29sdW1ucyB0byBkYXRhZnJhbWVzCiAgICB8ICAgLSBleHBvcnRpbmcgZGF0YSBmcm9tIFIKICAgIHwgICAtIHBlcmZvcm1pbmcgb3BlcmF0aW9ucyBvbiBpbmRpdmlkdWFsIGNvbHVtbnMgb2YgZGF0YQphdXRob3I6CiAgLSBFdWdlbmUgUGxhdnNraW4KICAtIEdyYWNlIEF2ZWNpbGxhCiAgLSBUb2JpIFNocmFpbmsKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGRlcHRoOiAzCiAgICB0aWR5OiB5ZXMKICAgIHRvYzogeWVzCi0tLQoqKlNvbHV0aW9ucyB0byB0aGlzIHdvcmtzaG9wIGNhbiBiZSBmb3VuZCBbaGVyZV0oU29sdXRpb25zX1dvcmtzaG9wXzUubmIuaHRtbCkqKgoKIyBSZXZpZXcKCmBgYHtyfQpyZXZpZXdfdmVjdG9yIDwtIGMoMSwgMi42LCBOQSwgNC45OCwgMS41LCBOQSkKCiMgcnVuIGEgZnVuY3Rpb24gdGhhdCB3aWxsIGRldGVybWluZSB3aGljaCBvZiB0aGUgdmFsdWVzIGluIHJldmlld192ZWN0b3IgaXMgYQojIG1pc3NpbmcgdmFsdWUKaXMubmEocmV2aWV3X3ZlY3RvcikKIyBydW4gYW4gb3BlcmF0aW9uIHRoYXQgd2lsbCBkZXRlcm1pbmUgd2hpY2ggb2YgdGhlIG51bWJlcnMgaW4gcmV2aWV3X3ZlY3RvciBpcwojIGdyZWF0ZXIgdGhhbiAyIGFuZCBsZXNzIHRoYW4gNApzdWJ2ZWN0b3JfbG9naWNhbCA8LSByZXZpZXdfdmVjdG9yID4gMiAmIHJldmlld192ZWN0b3IgPCA0CiMgdXNlIHRoZSBsb2dpY2FsIHZlY3RvciBhYm92ZSB0byBjcmVhdGUgYSBzdWJ2ZWN0b3Igb2YgcmV2aWV3X3ZlY3RvciB0aGF0IG9ubHkKIyBpbmNsdWRlcyB0aGUgZWxlbWVudHMgb2YgcmV2aWV3X3ZlY3RvciB0aGF0IGFyZSBncmVhdGVyIHRoYW4gMiBhbmQgbGVzcyB0aGFuIDQKc3VidmVjdG9yIDwtIHJldmlld192ZWN0b3Jbc3VidmVjdG9yX2xvZ2ljYWxdCnByaW50KHN1YnZlY3RvcikKCmxlYWZfbnVtYmVyIDwtIGMoNSwgOCwgNSwgMTEsIDQsIDUsIDgsIDEzLCAxMCwgNCwgNykKCiMgbWFrZSBhIGxvZ2ljYWwgdmVjdG9yIGNhbGxlZCBtYW55X2xlYXZlcyB0aGF0IHRlbGxzIHlvdSB3aGV0aGVyIGVhY2ggcG9zaXRpb24KIyBpbiBsZWFmX251bWJlciBpcyBncmVhdGVyIHRoYW4gMTAKbWFueV9sZWF2ZXMgPC0gbGVhZl9udW1iZXIgPiAxMAojIHVzZSBtYW55X2xlYXZlcyB0byBzZXQgZWFjaCB2YWx1ZSBvZiBsZWFmX251bWJlciBvdmVyIDEwIHRvIGluZmluaXR5IChJbmYpCmxlYWZfbnVtYmVyW21hbnlfbGVhdmVzXSA8LSBJbmYKcHJpbnQobGVhZl9udW1iZXIpCmBgYAoKIyBEYXRhIEZyYW1lczogUmVhZGluZyBpbiBhbmQgbWFuaXB1bGF0aW5nIGRhdGEsIHdyaXRpbmcgZGF0YQoKU28gZmFyLCBldmVyeXRoaW5nIHdlJ3ZlIGJlZW4gZG9pbmcgaW4gUiBoYXMgaW52b2x2ZWQgdmVjdG9ycy4gSG93ZXZlciwgd2UgaGF2ZW4ndCB5ZXQgbGVhcm5lZCBhYm91dCB0aGUgbW9zdCB1c2VmdWwgZGF0YSBzdHJ1Y3R1cmUgaW4gUjogZGF0YSBmcmFtZXMuCgpEYXRhIGZyYW1lcyBhcmUgZXNzZW50aWFsbHkganVzdCB0YWJsZXMuIFRoZXkgaGF2ZSByb3dzIGFuZCBjb2x1bW5zLCBhbmQgaWYgeW91IHNldCB5b3VyIGRhdGEgdXAgcmlnaHQsIHRoZXkgbWFrZSBpdCAqaW5jcmVkaWJseSogZWFzeSB0byBleHBsb3JlIHlvdXIgZGF0YS4gUiBoYXMgYSB0b24gb2Ygb3BlcmF0aW9ucyB0aGF0IGFyZSBzcGVjaWFsaXplZCBpbiByZWFkaW5nIGRhdGEgZnJhbWVzIGFuZCBlaXRoZXIgcGxvdHRpbmcgdGhlbSBpbiBhbiBlYXN5IHdheSwgb3Igc3VtbWFyaXppbmcgdGhlIGRhdGEgaW5zaWRlLCBhbmQgd2UncmUgZ29pbmcgdG8gYmUgc3BlbmRpbmcgdGhlIG5leHQgY291cGxlIG9mIGRheXMgbGVhcm5pbmcgYWJvdXQgdGhvc2UuCgpgYGB7cn0KaWYgKGRpci5leGlzdHMoJ2NsYXNzX2ZpZ3VyZXMnKSl7CiAgbGlicmFyeShrbml0cikKICBpbmNsdWRlX2dyYXBoaWNzKCdjbGFzc19maWd1cmVzL2RmX2lsbHVzdHJhdGlvbi5wbmcnKQp9CmBgYAoKIyMgUmVhZGluZyBpbiB0YWJsZXMgZnJvbSBleGNlbAoKQSBsb3Qgb2YgdGltZXMsIGl0J3Mgbm90IHJlYWxseSBjb252ZW5pZW50IHRvIGVudGVyIHlvdXIgZGF0YSBpbiBSLiBXaGVuIGNvbGxlY3RpbmcgZGF0YSBieSBoYW5kLCBpdCBjYW4gYmUgcmVhbGx5IGNvbnZlbmllbnQgdG8gdHlwZSBpdCBpbnRvIGV4Y2VsIChvciBnb29nbGUgc2hlZXRzKS4gQWx0aG91Z2ggdGhlcmUgaXMgYSBzcGVjaWFsIHBhY2thZ2UgaW4gUiB0aGF0IGNhbiByZWFkIGV4Y2VsIGZvcm1hdCBmaWxlcyAoKioueGxzeCoqKSwgdGhpcyBpcyBub3QgY29tbW9ubHkgdXNlZC4gSW5zdGVhZCwgd2UgdXN1YWxseSBzYXZlIGZpbGVzIGluICoqLmNzdioqIGZvcm1hdCwgd2hpY2ggdGhyb3dzIG91dCBhbGwgb2YgdGhlIHNwZWNpYWwgZm9ybWF0dGluZyBleGNlbCBkb2VzIGFuZCBqdXN0IGtlZXBzIHRoZSBkYXRhIGl0c2VsZi4KCioqY3N2Kiogc3RhbmRzIGZvciAqY29tbWEtc2VwYXJhdGVkIHZhbHVlcyosIGFuZCB0aGF0J3MganVzdCB3aGF0IHRoZXkgYXJlLiBUaGVzZSBmaWxlcyBjYW4gYmUgZWFzaWx5IG9wZW5lZCBpbiBleGNlbCBvciBnb29nbGUgc2hlZXRzLCBidXQgaWYgeW91IG9wZW4gdGhlbSBpbiBub3RlcGFkLCB5b3UgY2FuIHNlZSB0aGF0IHRoZXkncmUgcmVhbGx5IGp1c3Qgcm93cyBvZiBudW1iZXJzIGFuZCB3b3JkcyBzZXBhcmF0ZWQgYnkuLi4geW91IGd1ZXNzZWQgaXQsIGNvbW1hcy4KCllvdSBzaG91bGQgaGF2ZSBhIGRhdGFzZXQgaW4gY3N2IGZvcm1hdCBjYWxsZWQgKmlyaXMuY3N2Ki4gVGhpcyBpcyBhIHNldCBvZiBpbmZvcm1hdGlvbiBvbiBmbG93ZXIgc3RydWN0dXJlIGNvbGxlY3RlZCBmcm9tIHBsYW50cyBvZiAzIGlyaXMgc3BlY2llcy4gRm9sbG93IGFsb25nIHdpdGggdGhpcyBmaWxlIGFzIHdlIGdvIHRocm91Z2ggdGhlIHJ1bGVzLiBUaGUgY29kZSBiZWxvdyB3aWxsIG9ubHkgd29yayBpZiB5b3UgaGF2ZSBpcmlzLmNzdiBzYXZlZCBpbiB0aGUgc2FtZSBmb2xkZXIgYXMgdGhpcyBmaWxlLgoKRmlyc3QsIGxldCdzIGdldCBSIHRvIHJlYWQgaW4gdGhlIGlyaXMgZGF0YS4gWW91IGNhbiBkb3dubG9hZCBpdCBmcm9tIFtoZXJlXShodHRwczovL2dpdGh1Yi5jb20vcGxhdnNraW4vSW50cm9fUl9Db3Vyc2UvYmxvYi9tYXN0ZXIvaXJpcy5jc3YpOyByaWdodC1jbGljayAob3IsIG9uIGEgTWFjLCBjb250cm9sLWNsaWNrKSB0aGUgJ1JhdyIgYnV0dG9uIG9uIHRoZSB1cHBlciByaWdodCwgc2VsZWN0ICJzYXZlIGxpbmsgYXMuLi4iLCBhbmQgZG93bmxvYWQgaXQgaW50byB0aGUgc2FtZSBmb2xkZXIgYXMgdGhpcyB3b3Jrc2hvcCBmaWxlLgpgYGB7cn0KIyB0aGlzIGlzIGFjdHVhbGx5IGEgYnVpbHQtaW4gZGF0YXNldCBpbiBSLCBidXQgSSBzYXZlZCBpdCBhcyBhIGNzdiBzbyB3ZSBjYW4KIyBwcmFjdGljZSBpbXBvcnRpbmcKaXJpc19kZiA8LSByZWFkLmNzdignaXJpcy5jc3YnKQpWaWV3KGlyaXNfZGYpCmBgYAoKVGhlcmUgYXJlIHNvbWUgZ29vZCBwcmFjdGljZXMgZm9yIGhvdyB0byBvcmdhbml6ZSBhbmQgcmVjb3JkIHlvdXIgZGF0YSwgYW5kIGZvbGxvd2luZyB0aGVzZSB3aWxsIG1ha2UgeW91ciBsaWZlICpNVUNIKiBlYXNpZXIgd2hlbiB5b3UgdHJ5IHRvIGFuYWx5emUgeW91ciBkYXRhLiBGb2xsb3dpbmcgdGhlc2UgcnVsZXMgbWVhbnMgdGhhdCBSIHdpbGwgYmUgYWJsZSB0byBlYXNpbHkgcmVhZCB5b3UgZGF0YSwgYW5kIHRoYXQgdGhlIGRhdGEgaXMgaW1tZWRpYXRlbHkgc2V0IHVwIGluIHN1Y2ggYSB3YXkgdGhhdCB0aGUgYnVpbHQtaW4gUiBmdW5jdGlvbnMgZm9yIHByb2Nlc3NpbmcgZGF0YSBjYW4gZWFzaWx5IHdvcmsgd2l0aCBpdC4KCiogR2l2ZSBlYWNoIGNvbHVtbiBhIHNob3J0LCBpbmZvcm1hdGl2ZSB0aXRsZS4gQXZvaWQgc3BhY2VzIGFuZCB3ZWlyZCBzeW1ib2xzL3B1bmN0dWF0aW9uLiBZb3UgY2FuIHVzZSBsZXR0ZXJzLCBudW1iZXJzLCBwZXJpb2RzLCB1bmRlcnNjb3JlcyAoIF8gKSBhbmQgaHlwaGVucy4gKk5FVkVSKiB1c2UgY29tbWFzIGluIHlvdXIgZGF0YSBlbnRyeS4KCiogWW91IGNhbiBhbHNvIG5hbWUgcm93cywgYnV0IEkgc3VnZ2VzdCBhdm9pZGluZyB0aGlzIGZvciBub3csIHNpbmNlIHlvdSB3aWxsIG5lZWQgdG8gcHJvdmlkZSBhIHNwZWNpYWwgYXJndW1lbnQgdG8gYHJlYWQuY3N2YCBpZiB5b3UgZG8gdGhpcy4KCiogS2VlcCBhIHNpbmdsZSBjb2x1bW4gYXMgb25lIGRhdGEgdHlwZSAoZS5nLiBhIGNvbHVtbiBjYW4gY29udGFpbiBzdHJpbmdzLCBvciBudW1iZXJzLCBvciBsb2dpY2FscykuIFIgd2lsbCB1c3VhbGx5IGtub3cgd2hpY2ggaXMgd2hpY2gsIGFuZCB0cmVhdCB0aGUgZGF0YSBhY2NvcmRpbmdseS4KCiogTm90aWNlIHRoYXQgaW4gdGhlIGlyaXMgZGF0YWZyYW1lLCBldmVyeSByb3cgaG9sZHMgYSBzaW5nbGUgb2JzZXJ2YXRpb24uIFRoYXQgaXMsIGRhdGEgb24gZWFjaCBzaW5nbGUgZGF0YSBwb2ludCAocGxhbnQpIGlzIG9uZSByb3csIGFuZCBlYWNoIGluZGl2aWR1YWwgcGllY2Ugb2YgaW5mb3JtYXRpb24gYWJvdXQgaXQgaXMgb25lIGNvbHVtbiAoZS5nLiBob3cgd2lkZSB3ZXJlIGl0cyBwZXRhbHM/IFdoYXQgc3BlY2llcyBkaWQgdGhpcyBwbGFudCBiZWxvbmcgdG8/KQoKVGhlIGxhc3QgcG9pbnQgb24gdGhpcyBsaXN0IGludm9sdmVzIHRoaW5raW5nIGFib3V0IHdoYXQgY29uc3RpdHV0ZXMgYW4gJ29ic2VydmF0aW9uJyBpbiB5b3VyIGRhdGEuIFRoaXMgY2FuIHNlZW0gc3ViamVjdGl2ZSEgTGV0J3Mgc2F5IHlvdSdyZSB0cmFja2luZyBwbGFudCBncm93dGggb3ZlciB0aW1lOiBpcyBhIHNpbmdsZSBvYnNlcnZhdGlvbiBvbmUgcGxhbnQsIG9yIG9uZSB0aW1lcG9pbnQ/IEFzIHlvdSBwcm9ncmFtLCB5b3UnbGwgc3RhcnQgZ2V0dGluZyBhbiBpbnR1aXRpdmUgZmVlbGluZyBmb3IgYmV0dGVyIGFuZCB3b3JzZSB3YXlzIHRvIG9yZ2FuaXplIGRhdGEuIEJ1dCByZW1lbWJlciB0aGF0IGRhdGEgY2FuIGFsd2F5cyBiZSByZS1vcmdhbml6ZWQgaW4gUiBpZiB5b3UgZG9uJ3QgbGlrZSBob3cgeW91IG9yaWdpbmFsbHkgZGlkIGl0IChvciBpZiBzb21lb25lIGVsc2UgY29sbGVjdGVkIHRoZSBkYXRhISkgVGhlc2UgcHJpbmNpcGxlcyBvZiBkYXRhIG9yZ2FuaXphdGlvbiBhcmUgY2FsbGVkICp0aWR5KiBkYXRhLCBhbmQgdGhlcmUgaXMgKmh1Z2VseSogdXNlZnVsIHBhY2thZ2UsICoqdGlkeXIqKiB0aGF0IGNvbnRhaW5zIGZ1bmN0aW9ucyB0byByZS1vcmdhbml6ZSBhbmQgdGlkeSB1cCB5b3VyIGRhdGEuIFdlIHdvbid0IGNvdmVyIGl0IGluIHRoaXMgY2xhc3MsIGJ1dCBJIHdhbnQgdG8gc2hhcmUgYSBbbGlua10oaHR0cHM6Ly9jcmFuLnItcHJvamVjdC5vcmcvd2ViL3BhY2thZ2VzL3RpZHlyL3ZpZ25ldHRlcy90aWR5LWRhdGEuaHRtbCkgd2l0aCBzb21lIGluZm8gaW4gY2FzZSB5b3UgY29udGludWUgcHJvZ3JhbW1pbmcgaW4gdGhlIGZ1dHVyZSBhbmQgZmluZCB0aGF0IHlvdSBuZWVkIGl0LgoKIyMgU2VsZWN0aW5nIGRhdGEgZnJvbSBkYXRhIGZyYW1lczogcm93IG51bWJlcnMgYW5kIGNvbHVtbiBudW1iZXJzIGFuZCAkCgpMZXQncyBzYXkgd2Ugd2FudGVkIHRvIGNhbGN1bGF0ZSB0aGUgbWVhbiBwZXRhbCB3aWR0aCBvZiBhbGwgdGhlIGlyaXNlcyBtZWFzdXJlZCBpbiB0aGUgaXJpcyBkYXRhc2V0LiBIb3cgY2FuIHdlIGRvIHRoaXM/IFdlIG5lZWQgdG8gc2VsZWN0IHRoZSBwZXRhbCB3aWR0aCBjb2x1bW4uIFRoZXJlIGFyZSBhIGNvdXBsZSBvZiB3YXlzIHRvIGRvIHRoaXMuIFRoZSBlYXNpZXN0IGFuZCBtb3N0IGNvbW1vbiBvbmUgaXMgdXNpbmcgYCRgLgoKYGBge3J9CiMgcHJpbnQgb3V0IGFsbCB0aGUgc2VwYWwgbGVuZ3RocwpwcmludChpcmlzX2RmJFNlcGFsLkxlbmd0aCkKCiMgZ2V0IHRoZSBtZWFuIG9mIHRoZSBwZXRhbCB3aWR0aHMKbWVhbihpcmlzX2RmJFNlcGFsLkxlbmd0aCkKYGBgCgpXZSBjYW4gYWxzbyB1c2UgaW5kZXhpbmcgdG8gZ2V0IGEgc3BlY2lmaWMgcm93IGFuZCBjb2x1bW4gcG9zaXRpb24gaW4gdGhlIGRhdGEgZnJhbWUuIFJlbWVtYmVyIHRoYXQgd2hlbiB3ZSB1c2VkIGluZGV4aW5nIGZvciB2ZWN0b3JzLCB3ZSBwdXQgdGhlIG5lY2Vzc2FyeSBwb3NpdGlvbiAob3IgdmVjdG9yIG9mIHBvc2l0aW9ucykgaW4gc3F1YXJlIGJyYWNrZXRzIGFmdGVyIHRoZSBuYW1lIG9mIHRoZSB2ZWN0b3IuIEluIGEgZGF0YSBmcmFtZSwgd2UgbmVlZCB0byBzcGVjaWZ5IGJvdGggdGhlIHJvdyBwb3NpdGlvbihzKSwgYW5kIHRoZSBjb2x1bW4gcG9zaXRpb24ocykuCgpXaGVuIHVzaW5nIGluZGljZXMgdG8gc3BlY2lmeSBwb3NpdGlvbiBpbiBhIGRhdGEgZnJhbWUsICoqcm93cyBmaXJzdCwgY29sdW1ucyBzZWNvbmQqKgoKYGBge3J9CiMgR2V0IHRoZSB2YWx1ZSBpbiB0aGUgc2Vjb25kIHJvdyBhbmQgdGhpcmQgY29sdW1uIGluIHRoZSBpcmlzIGRhdGFzZXQKcHJpbnQoaXJpc19kZlsyLCAzXSkKCiMgR2V0IHRoZSB2YWx1ZXMgaW4gdGhlIDJuZCB0byA1dGggcm93cyBpbiB0aGUgZmlmdGggY29sdW1uIGluIGlyaXNfZGYKcHJpbnQoaXJpc19kZltjKDI6NSksIDVdKQpgYGAKCkluIGFkZGl0aW9uIHRvIHVzaW5nIG51bWVyaWMgaW5kaWNlcywgeW91IGNhbiBhbHNvIHVzZSBuYW1lcyBvZiBjb2x1bW5zIChvciByb3dzLCBpZiB0aGV5J3JlIG5hbWVkISkKYGBge3J9CnByaW50KGlyaXNfZGZbMiwgJ1BldGFsLkxlbmd0aCddKQpgYGAKCkZpbmFsbHksIGlmIHlvdSB3YW50IHRvIGdldCAqZXZlcnkqIHJvdyBvciAqZXZlcnkqIGNvbHVtbiwganVzdCBsZWF2ZSB0aGF0IGluZGV4IGJsYW5rLgpgYGB7cn0KIyBnZXQgZXZlcnkgZWxlbWVudCBmcm9tIDJuZCBjb2x1bW4gKHNhbWUgYXMgaXJpc19kZiRTZXBhbC5XaWR0aCkKcHJpbnQoaXJpc19kZlsgLCAyXSkKCiMgZ2V0IGV2ZXJ5IHZhbHVlIGluIHRoZSA2dGggcm93IG9mIGlyaXNfZGYKcHJpbnQoaXJpc19kZls2LCBdKQpgYGAKKE5vdGUgdGhhdCBwcmludGluZyBvdXQgYWxsIG9mIHRoZSBzaXh0aCByb3cgcmVzdWx0cyBpbiBhIGRhdGFmcmFtZSwgbm90IGEgdmVjdG9yLiBUaGlzIGNhbiBjb21lIGluIGhhbmR5IGFzIHlvdSBtYW5pcHVsYXRlIHRhYmxlcyBpbiBSLCBlLmcuIGlmIHlvdSB3YW50IHRvIGFkZCByb3dzIGZyb20gb25lIGRhdGFmcmFtZSB0byBhbm90aGVyIG9uZS4pCgojIyBDcmVhdGluZyBuZXcgY29sdW1ucyBmcm9tIG9wZXJhdGlvbnMgb24gb3RoZXIgY29sdW1ucwoKQSBsb3Qgb2YgdGltZXMsIHdlIG5lZWQgdG8gcHJvY2VzcyB0aGUgZGF0YSB3ZSBoYXZlIGluIG9yZGVyIGZvciBpdCB0byBiZSBpbnRlcmVzdGluZyB0byB1cy4gWW91IGNhbiBpbWFnaW5lIGEgc2NlbmFyaW8gaW4gd2hpY2ggd2UnZCB3YW50IHRvIGRvIHRoaXMgaW4gdGhlIGlyaXMgZGF0YXNldC4gV2UgaGF2ZSBhIGxpc3Qgb2YgbWVhc3VyZXMgcGV0YWwgd2lkdGhzIGFuZCBsZW5ndGhzIGZyb20gdmFyaW91cyBzcGVjaWVzLCBhbmQgbWF5YmUgd2Ugd2FudCB0byBldmVudHVhbGx5IGludmVzdGlnYXRlIGhvdyB0aGVzZSB2YXJ5IGFjcm9zcyBzcGVjaWVzLiBCdXQgdGhlIHByb2JsZW0gaXMgdGhhdCBldmVuIHdpdGhpbiBhIHNwZWNpZXMsIHNvbWUgZmxvd2VycyBqdXN0IGhhcHBlbiB0byBiZSBsYXJnZXIsIGJ5IGNoYW5jZS4gVGhlc2Ugd291bGQgaGF2ZSBCT1RIIGhpZ2hlciBwZXRhbCBsZW5ndGhzIGFuZCB3aWR0aHMsIG1ha2luZyBvdXIgZGF0YXNldCBub2lzaWVyLiBNYXliZSB3aGF0IHdlIHJlYWxseSBjYXJlIGFib3V0IGlzIHRoZSByYXRpbyBvZiBwZXRhbCBsZW5ndGggdG8gd2lkdGg/IFIgbWFrZXMgY2FsY3VsYXRpbmcgdGhpcyBlYXN5LgoKYGBge3J9CiMgcmVtZW1iZXIgdGhhdCB0byBzcGVjaWZ5IGEgY29sdW1uLCB3ZSBjYW4gdXNlICQuIFdlIGNhbiBhbHNvIHVzZSB0aGlzIHRvCiMgY3JlYXRlIGEgbmV3IGNvbHVtbiwgUGV0YWwuUmF0aW8KaXJpc19kZiRQZXRhbC5SYXRpbyA8LSBpcmlzX2RmJFBldGFsLkxlbmd0aCAvIGlyaXNfZGYkUGV0YWwuV2lkdGgKVmlldyhpcmlzX2RmKQpgYGAKCiMjIENyZWF0aW5nIG5ldyBkYXRhIGZyYW1lcyBmcm9tIHNjcmF0Y2ggYW5kIHdyaXRpbmcgdGhlbQoKU29tZXRpbWVzLCB5b3Ugd2lsbCB3YW50IHRvIGNyZWF0ZSBhIGJyYW5kIG5ldyBkYXRhIGZyYW1lIGZyb20gc2NyYXRjaC4gVGhlcmUgYXJlIHNldmVyYWwgd2F5cyB0byBkbyB0aGlzLiBPbmUgd2F5IGlzIHRvIGNyZWF0ZSB2ZWN0b3JzIGZvciBlYWNoIGNvbHVtbiwgYW5kIHRoZW4gY29tYmluZSB0aGVtIHRvZ2V0aGVyIGluIGEgZGF0YSBmcmFtZS4gRm9yIGV4YW1wbGUsIGxldCdzIGltYWdpbmUgd2UgaGF2ZSBpbnZlc3RpZ2F0ZWQgdGhlIHBvcHVsYXRpb25zIG9mIHNxdWlycmVscyBhbmQgcGlnZW9ucyBpbiA0IHBhcmtzIGluIE5ZQy4KCldlIGNhbiBtYWtlIDMgdmVjdG9ycywgb25lIHdpdGggdGhlIG5hbWVzIG9mIHRoZSBwYXJrcywgb25lIHdpdGggdGhlIHBvcHVsYXRpb24gb2Ygc3F1aXJyZWxzLCBhbmQgb25lIHdpdGggdGhlIHBvcHVsYXRpb24gb2YgcGlnZW9ucy4gCmBgYHtyfQpwYXJrIDwtIGMoIldhc2hpbmd0b25TcSIsICJDZW50cmFsUGFyayIsICJQcm9zcGVjdFBhcmsiLCAiQmF0dGVyeVBhcmsiKQpwaWdlb25zIDwtIGMoOC42MmUzLCAxLjVlNCwgMTkzOSwgMjc2KQpyYXRzIDwtIGMoMTUwMCwgNDEzMjAsIDIwMDAzLCA0MDU3KQpzcXVpcnJlbHM8LSBjKCIzNTgiLCAiNTQ2IiwgIjQzOSIsICIzNDQiKQpgYGAKVGhlbiwgd2UgY2FuIHVzZSB0aGUgZnVuY3Rpb24gYGRhdGEuZnJhbWUoKWAgdG8gdHVybiB0aGVzZSBpbnRvIGEgc2luZ2xlIGRhdGEgZnJhbWUuIFRoZSBwb3NpdGlvbnMgaW4gdGhlIHZlY3RvcnMgd2lsbCBjb3JyZXNwb25kIHRvIHJvd3MsIGFuZCB0aGUgbmFtZXMgb2YgdGhlIHZlY3RvcnMgd2lsbCBiZWNvbWUgdGhlIGNvbHVtbiBuYW1lcy4KYGBge3J9CnBhcmtzX2RmIDwtIGRhdGEuZnJhbWUocGFyaywgc3F1aXJyZWxzLCByYXRzLCBwaWdlb25zKQpwYXJrc19kZgoKIyBhbm90aGVyIGNvbW1vbiB3YXkgdG8gZG8gdGhlIHNhbWUgdGhpbmcKcGFya3NfZGZfMiA8LQogIGRhdGEuZnJhbWUoCiAgICBwYXJrID0gYygiV2FzaGluZ3RvblNxIiwgIkNlbnRyYWxQYXJrIiwgIlByb3NwZWN0UGFyayIsICJCYXR0ZXJ5UGFyayIpLAogICAgc3F1aXJyZWxzID0gYygiMzU4IiwgIjU0NiIsICI0MzkiLCAiMzQ0IiksCiAgICByYXRzID0gYygxNTAwLCA0MTMyMCwgMjAwMDMsIDQwNTcpLAogICAgcGlnZW9ucyA9IGMoOC42MmUzLCAxLjVlNCwgMTkzOSwgMjc2KQogICAgKQpwYXJrc19kZl8yCmBgYAoKYGBge3J9CiN0cnkgYWNjZXNzaW5nIHRoZSB2YWx1ZXMgcm93cyAxLCAyLCBhbmQgMyBvZiBjb2x1bW4gMQpwYXJrc19kZltjKDE6MyksIDFdCmBgYAoKV2hhdCBpZiB5b3Ugd2FudGVkIHRvIHNoYXJlIHRoaXMgZGF0YSB3aXRoIGEgY29sbGVhZ3VlLCBzbyB0aGV5IGNvdWxkIGRvIHRoZWlyIG93biBjYWxjdWxhdGlvbnM/IFRoZSBuaWNlc3Qgd2F5IHdvdWxkIGJlIHRvIHNlbmQgdGhlbSBhIGNzdi4gV2UgY2FuIG1ha2UgY3N2cyBmcm9tIGRhdGEgZnJhbWVzIGluIFIgdXNpbmcgYHdyaXRlLmNzdigpYC4gVGFrZSBhIGxvb2sgYXQgdGhlIGRvY3VtZW50YXRpb24gZm9yIHRoaXMgZnVuY3Rpb24uCgpgYGB7cn0KIyB3cml0ZSBhIGNzdiBjYWxsZWQgJ3BhcmtzLmNzdicgd2l0aCB0aGUgZGF0YSBpbiBwYXJrc19kZgp3cml0ZS5jc3YocGFya3NfZGYsICdwYXJrcy5jc3YnKQpgYGAKCiMjIFdhdGNoIG91dCBmb3IgZmFjdG9ycyEKWW91IG1heSBoYXZlIG5vdGljZWQgdGhhdCBhY2Nlc3NpbmcgdGhlIHBhcmsgY29sdW1uIGdhdmUgdXMgc29tZXRoaW5nIHRoYXQgaW52b2x2ZWQgImxldmVscyIuIFRoZXNlIGFyZSBiZWNhdXNlIHRoZXkncmUgYWN0dWFsbHkgbm90IGNoYXJhY3RlcnMsIGJ1dCBzb21ldGhpbmcgY2FsbGVkIGZhY3RvcnMuIEZhY3RvcnMgYXJlIGNhdGVnb3JpY2FsIHZhcmlhYmxlcy4gVGhlc2UgYXJlIHZlcnkgaW1wb3J0YW50IGZvciBzb21lIHR5cGVzIG9mIHN0YXRpc3RpY2FsIG1vZGVscywgYnV0IHRoZXkgY2FuIGJlIGEgcHJvYmxlbSBpZiB5b3UgYXJlIGV4cGVjdGluZyBjaGFyYWN0ZXJzIG9yIG51bWJlcnMuCgpMZXQncyBsb29rIGF0IHRoZSBgZGF0YS5mcmFtZWAgYWdhaW4uCmBgYHtyfQpWaWV3KHBhcmtzX2RmKQpgYGAKCkxldCdzIHRyeSB0byBhY2Nlc3MgdGhlIHBvcHVsYXRpb24gb2Ygc3F1aXJyZWxzIGFzIGEgbnVtYmVyLgoKYGBge3J9CnBhcmtzX2RmJHNxdWlycmVscwphcy5udW1lcmljKHBhcmtzX2RmJHNxdWlycmVscykKYGBgCgpBcyB5b3UgY2FuIHNlZSwgdGhlIGNoYXJhY3RlciBudW1iZXJzIGFyZSBiZWluZyBjb252ZXJ0ZWQgbm90IHRvIHRoZSBudW1iZXJzIHRoZXkgc2hvdWxkIGJlLCBidXQgdG8gdGhlaXIgZmFjdG9yIGxldmVscy4gSSdtIHN1cmUgeW91IGNhbiBpbWFnaW5lIGhvdyB0aGlzIGNvdWxkIGJlIGEgaHVnZSBwcm9ibGVtLgoKV2hlbiBzb21ldGhpbmcgaXMgYSBmYWN0b3IgYW5kIHlvdXIgd2FudCBpdCB0byBiZSBhIG51bWJlciwgZG8gdGhpczoKCmBgYHtyfQphcy5udW1lcmljKGFzLmNoYXJhY3RlcihwYXJrc19kZiRzcXVpcnJlbHMpKSAKYGBgCgpCeSBmaXJzdCBnb2luZyB0aHJvdWdoIGBhcy5jaGFyYWN0ZXJgIGFuZCBUSEVOIGBhcy5udW1lcmljYCwgeW91CnByZXNlcnZlIHlvdXIgZW50cmllcyBhcyBpbnRlbmRlZC4KCkZpbmFsbHksIGlmIHlvdSB3YW50IHRvIGNoYW5nZSB0aGUgdmFsdWVzIGluIHRoZSBkYXRhIGZyYW1lLCB5b3UgbXVzdCByZW1lbWJlciB0byByZWFzc2lnbiB0aGF0IGNvbHVtbiBiYWNrIHRvIHRoZSBkYXRhZnJhbWUgKHJ1bm5pbmcgYGFzLm51bWVyaWMoKWAsIG9yIGFueSBvdGhlciBmdW5jdGlvbiwgd2l0aG91dCB1c2luZyB0aGUgYXNzaWdubWVudCBgPC1gIGRvZXNuJ3QgY2hhbmdlIHRoZSBvcmlnaW5hbCEpCgpgYGB7cn0KYXMubnVtZXJpYyhhcy5jaGFyYWN0ZXIocGFya3NfZGYkc3F1aXJyZWxzKSkgCnN0cihwYXJrc19kZikKcGFya3NfZGYkc3F1aXJyZWxzIDwtIGFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKHBhcmtzX2RmJHNxdWlycmVscykpIApzdHIocGFya3NfZGYpCmBgYAoKIyMgQ2FsY3VsYXRlIGNvbHVtbiBtZWFucywgc3RhbmRhcmQgZGV2aWF0aW9ucywgc3RhbmRhcmQgZXJyb3JzCgpOb3csIG1heWJlIHdlIHdhbnQgdG8gdXNlIHRoZXNlIGNvbHVtbnMgdG8gZmluZCBvdXQgc29tZXRoaW5nIGFib3V0IHBhcmtzIGluIE5ZQy4gTWF5YmUgd2Ugd2FudCB0byBmaW5kIHRoZSBhdmVyYWdlIG51bWJlciBvZiByYXRzIGFuZCBwaWdlb25zIGluIE5ZQyBwYXJrcy4KCmBgYHtyfQojIGZpbmQgdGhlIG1lYW4gbnVtYmVyIG9mIHJhdCBhbmQgcGlnZW9ucyBmb3IgcGFya3MgaW4gTllDCm1lYW4ocGFya3NfZGYkcmF0cykKbWVhbihwYXJrc19kZiRwaWdlb25zKQpgYGAKCldlIGFsc28gd2FudCB0byBrbm93IHRoZSBhbW91bnQgb2YgdmFyaWF0aW9uIGluIHBpZ2VvbiBhbmQgcmF0IHBvcHVsYXRpb25zLgoKYGBge3J9CiMgY2FsY3VsYXRlIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gLSB1c2UgZ29vZ2xlIHRvIGhlbHAgeW91IGZpbmQgZnVuY3Rpb25zCnNkKHBhcmtzX2RmJHJhdHMpCnNkKHBhcmtzX2RmJHBpZ2VvbnMpCmBgYAoKSWYgd2UgaGF2ZSBtYW55IGNvbHVtbnMgd2l0aCBudW1lcmljIGRhdGEsIGZpbmRpbmcgdGhlIG1lYW4gb2YgZWFjaCBvZiB0aGVtIGluZGl2aWR1YWxseSBjb3VsZCB0YWtlIGEgd2hpbGUuIFdlIGNhbiB1c2UgdGhlIGZ1bmN0aW9uIGBjb2xNZWFucygpYCBpbnN0ZWFkLiBUYWtlIGEgbG9vayBhdCB0aGUgZG9jdW1lbnRhdGlvbiBmb3IgYGNvbE1lYW5zKClgCgpgYGB7cn0KIyB0cnkgdXNpbmcgY29sTWVhbnMoKSB0byBmaW5kIHRoZSBtZWFuIG51bWJlciBvZiByYXRzIGFuZCBwaWdlb25zIGZvciBwYXJrcyBpbiBOWUMKICAjIGNvbE1lYW5zKHBhcmtzX2RmKQogICMgZG9lc24ndCB3b3JrIGJlY2F1c2UgY2FuJ3QgdGFrZSB0aGUgbWVhbiBvZiBzdHJpbmdzIG9yIGZhY3RvcnMgKGkuZS4gcGFyayBuYW1lIGNvbHVtbnMpCiMgZG8geW91IHJ1biBpbnRvIHByb2JsZW1zPyB3aHk/IGhvdyBjb3VsZCB3ZSBnZXQgd2hhdCB3ZSB3YW50IHVzaW5nIHRoaXMgZnVuY3Rpb24/CmNvbE1lYW5zKHBhcmtzX2RmWyAsIDM6NF0pCmBgYAoK</div>
 
 
 
@@ -2084,7 +2211,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("Workshop_5.Rmd");
+  window.initializeSourceEmbed("Solutions_Workshop_5.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
