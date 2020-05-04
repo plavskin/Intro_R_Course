@@ -410,7 +410,7 @@ Because ggplot is so popular, there's been a ton of additional packages written 
 
 ### gganimate
 
-Add animations to plots (seems like it doesn't animate in the html notebook)
+Add animations to plots
 ```{r warning=FALSE, message=FALSE, results = FALSE}
 #install.packages('gifski')
 #install.packages('gganimate')
