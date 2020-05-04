@@ -20,12 +20,17 @@ output:
 # Review
 ```{r}
 # use ggplot to make a histogram of iris sepal width across all species
-
+ggplot(data = iris) +
+  geom_histogram(mapping = aes(x = Sepal.Width))
 # use ggplot to make a plot of iris petal length vs sepal length, colored by
 # Species
-
+scatterplot <- ggplot(data = iris) +
+  geom_point(mapping = aes(x = Petal.Length, y = Sepal.Length, color = Species))
+print(scatterplot)
 # repeat the scatterplot above, but have the species label appear on every point
-
+labeled_scatterplot <- scatterplot +
+  geom_text(mapping = aes(x = Petal.Length, y = Sepal.Length + .1, label = Species))
+print(labeled_scatterplot)
 
 ```
 
@@ -35,6 +40,7 @@ One of the most powerful things R can do easily and quickly is to select part of
 ```{r}
 # create a subset with data on all species *except* setosa
 iris_no_setosa <- subset(iris, Species != 'setosa')
+View(iris_no_setosa)
 ```
 Look at this new dataframe. Notice that in the code above, subset (like ggplot) knows what we mean by `Species`; because we already tell is which dataframe to work with, it figures that Species is just one of the columns in this dataframe. Recall that `!=` means 'not equal to'.
 
@@ -42,10 +48,11 @@ Try this on your own. Create a data frame of all the plants where sepal width is
 ```{r}
 # create a subset of the data, iris_wide_sepal, that includes all plants for
 # which sepal width is greater than 3.5
-
+iris_wide_sepal <- subset(iris, Sepal.Width > 3.5)
 # look at the data frame. what do you notice about these plants (esp their species)?
-
+print(iris_wide_sepal)
 ```
+Most of these plants are from the *setosa* species.
 
 ### sidenote: %in%
 
@@ -83,11 +90,11 @@ One way to get around this is through subsetting. Make a subset of the iris data
 # use subset() to make a dataframe, setosa_df, that contains only the data where
 # Species is setosa
 # (hint: you want the Species column to equal 'setosa')
-
+setosa_df <- subset(iris, Species == 'setosa')
 # pass the summary data for setosa_df into a new variable called setosa_summary
-
+setosa_summary <- summary(setosa_df)
 # print out setosa_summary
-
+print(setosa_summary)
 ```
 
 There are a couple of important limitations to the approach we just used. First of all, we have to do this to one category at a time. This may not be so bad for 3 species, but imagine we had a dataset containing 50 species (or other categories we were interested in). Second, if you look in your **Environment** window, you'll notice that neither iris_summary or setosa_summary are dataframes. The `summary` function produces a weird R data type called a *table*, which is easy to look at but a pain to do anything with.
@@ -129,13 +136,15 @@ output_df <-
 ```
 Here, the `~` represents "as a function of"; this is common to many R functions, as you will see below!
 
-**plyr** command names are based on the data they take as input and output; there are lots of options here, but I don't want to go into too many of them. For now, let's work with the iris data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (*d*) to dataframe (*d*), the function we want to use is `ddply` (if we were using a dataframe as an output and an array as output, we'd use `daply`, etc).
+**plyr** command names are based on the data they take as input and output; there are lots of options here, but I don't want to go into too many of them. For now, let's work with the iris data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (*d*) to dataframe (*d*), the function we want to use is `ddply()` (if we were using a dataframe as an output and an array as output, we'd use `daply()`, etc).
 
 For example, let's try to create a dataframe that contains the mean petal length of each iris species:
 ```{r}
 iris_petal_length_summary <-
   ddply(iris, ~ Species, summarize, mean_Petal_Length = mean(Petal.Length))
+print(iris_petal_length_summary)
 ```
+Our summary is now a dataframe, and we can easily retrieve the mean petal length for any species
 
 ## Creating multiple columns of summary data
 
@@ -147,15 +156,21 @@ iris_petal_length_summary_2 <-
         summarize,
         mean_Petal_Length = mean(Petal.Length),
         sd_Petal_Length = sd(Petal.Length))
+print(iris_petal_length_summary_2)
 ```
-Our summary is now a dataframe, and we can easily retrieve the mean petal length for any species
 
 Let's try a challenge:
 ```{r}
 # Use ddply to create a dataframe, iris_sepal_width_summary, that contains the
 # mean and standard error (SE) of each species' sepal width
 # SE = standard deviation / sqrt(count - 1)
-
+iris_sepal_width_summary <-
+  ddply(iris,
+        ~ Species,
+        summarize,
+        mean_Petal_Length = mean(Petal.Length),
+        se_Petal_Length = sd(Petal.Length)/sqrt(length(Petal.Length)-1))
+print(iris_sepal_width_summary)
 ```
 I think what helps me think about the solution to the above is that, in effect, `ddply` treats each Species as its own little dataframe, as if you were manually subsetting the iris dataframe by Species one-by-one and calculating the output column values. This is *split-apply-combine* in action.
 
@@ -179,6 +194,7 @@ iris_petal_length_summary_3 <-
         summarize,
         mean_Petal_Length = mean(Petal.Length),
         sd_Petal_Length = sd(Petal.Length))
+print(iris_petal_length_summary_3)
 ```
 
 # Doing stats in R
@@ -207,7 +223,7 @@ I **STRONGLY** encourage you to dig into the documentation for this test (and an
 ```{r}
 # Run a paired t-test to compare sepal width to petal width across all the iris
 # data
-
+t.test(iris$Sepal.Width, iris$Petal.Width)
 ```
 
 ### Running t-tests on tidy dataframes
@@ -219,14 +235,16 @@ t.test(<data to compare column> ~ <category column>, data = <input_dataframe>)
 
 Let's try this:
 ```{r}
-t.test(Petal.Width ~ Species, data = iris)
+# t.test(Petal.Width ~ Species, data = iris)
 ```
 Ooops... what happened?
+
+This code doesn't work because there are three species categories, and t-tests can only compare two things at a time.
 
 ```{r}
 # Run t.test as above, but correctly, in order to perform a t-test comparing
 # mean petal width between two species in the iris dataframe
-
+t.test(Petal.Width ~ Species, data = subset(iris, Species != 'setosa'))
 ```
 (Again, note the use of `~` to mean "as a function of" here.)
 
@@ -250,10 +268,11 @@ This gives us a list of the names of the variables that the t_test_results list 
 ```{r}
 # save the p-value of this comparison into a variable
 diff_p_val <- t_test_results$p.value
-
+print(diff_p_val)
 # save the 95% confidence interval of the true difference between the means into
 # a variable
-
+diff_CI <- t_test_results$conf.int
+print(diff_CI)
 ```
 
 ## Performing anova
@@ -296,7 +315,9 @@ Reminder: you can plot a linear regression to your data in ggplot, with a confid
 # the y-axis; include all datapoints, colored by Species, and a *single*
 # trendline, generated using method = lm, across all the samples
 # (regardless of species)
-
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point(mapping = aes(color = Species)) +
+  geom_smooth(method = lm)
 ```
 Does the strong negative slope here make sense? What's going on? (This is a very common problem called [**Simpson's Paradox**](https://en.wikipedia.org/wiki/Simpson%27s_paradox), which often confounds correlations and linear models.)
 
@@ -306,7 +327,8 @@ Maybe we can do a better job within the confines of our silly example by includi
 # that models Petal.Width as a function of Sepal.Width and Species, and print
 # out its summary
 # Hint: see how we split data by multiple categories in ddply earlier
-
+silly_model_with_species <- lm(Petal.Length ~ Sepal.Width + Species, data = iris)
+summary(silly_model_with_species)
 ```
 What is the "Intercept" here? If we look at the slope terms, we can see that the first Species in the list (*setosa*) is treated as the "Intercept" Species. Therefore, the Intercept is what the model calculates the petal width of a *setosa* flower would be if its sepal width were 0. The rest of the terms here are considered slopes: each extra centimeter of sepal width increases petal width by ~0.5cm (the relationship between sepal width and petal length is now positive, which I think makes more sense considering the plot we just made). The petal length for a given sepal width is ~3cm higher in *versicolor* than in *setosa*, and ~4cm higher in *virginica* than *setosa*.
 
