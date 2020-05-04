@@ -58,11 +58,13 @@ A really useful logical operator in R is `%in%`; it checks that the thing before
 'e' %in% c('a', 'b', 'c')
 ```
 
+
 `%in%` can be incredibly useful in subsetting.
 ```{r}
 # another way to subset data with non-setosa species
 iris_no_setosa_2 <- subset(iris, Species %in% c('versicolor', 'virginica'))
 ```
+
 
 # Getting useful info about your data
 
@@ -71,6 +73,7 @@ It can be incredibly helpful to quickly get summary info for your data in an acc
 ## Using the summary function
 
 A really useful function for quickly learning about the properties of your data is `summary()`. It shows you the mean, median, and quantiles of your numeric data, as well as counts for each data category. Try this:
+
 ```{r}
 iris_summary <- summary(iris)
 print(iris_summary)
