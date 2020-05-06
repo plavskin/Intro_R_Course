@@ -14,7 +14,6 @@ output:
     tidy: yes
     toc: yes
 ---
-**Solutions to this workshop can be found [here](Solutions_Workshop_8.nb.html)**
 
 The techniques we've learned in the last few workshops are geared towards helping you understand the basics of how to analyze data in R. However, R is a full-fledged programming language, and you can use it to do a lot more than just plot data and run stats.
 
@@ -47,6 +46,15 @@ if (best_plant == 'moss'){
 }
 ```
 Try changing the value of the `best_plant` variable above and re-running the code.
+```{r}
+best_plant <- 'maize'
+
+if (best_plant == 'moss'){
+  print("Bryophytes forever")
+}else{
+  print("You're mistaken")
+}
+```
 
 Importantly, these chains of statements are evaluated top to bottom, and once one part is found to be true, the rest is not run. Take a look at this example:
 ```{r}
@@ -68,11 +76,12 @@ We've been working with the iris dataset throughout this course, so let's stick 
 
 ## Using variables to set up simulations
 
-Let's start simple, and try to just perform a very simple digital plant growth experiment, with no salt treatment for now. We can start our virtual plants as seeds at timepoint *t0*, and record their height in centimeters in a vector. Here, we need to make a key first decision: sample size!
+Let's start simple, and try to just perform a very straight-forward digital plant growth experiment, with no salt treatment for now. We can start our virtual plants as seeds at *timepoint 0*, and record their height in centimeters in a vector. Here, we need to make a key first decision: sample size!
 
 Let's decide our sample size is 3 for now. One (not great) way we can make our initial vector is by just writing out the starting heights.
 ```{r}
 not_great_day_0_plants <- c(0, 0, 0)
+print(not_great_day_0_plants)
 ```
 
 Why is this not great? Well, what if we want to start with a *much* larger sample size? Or, what if we want to be able to easily change the sample size in our experiment, as we'll want to do later? Instead, we can declare the sample size as a variable, and use the `rep()` function, which repeats a vector (or single string/number) a specified number of times, to create this initial vector. (A note for your future programmer self: `rep()` can be used to repeat both individual elements in a vector and a whole vector, and can come in quite useful.)
@@ -91,7 +100,8 @@ plant_growth_per_day <- 0.5
 
 # create a new vector, day_1_plants, in which each of the plants grows by
 # plant_growth_per_day
-
+day_1_plants <- day_0_plants + plant_growth_per_day
+print(day_1_plants)
 ```
 
 ## Simulation using randomly drawn numbers
@@ -106,7 +116,10 @@ plant_growth_sd <- 0.1
 
 # create a new vector, day_2_plants, using day_1_plants, plant_growth_per_day,
 # plant_growth_sd, and the rnorm() function
-
+day_2_plants <- day_1_plants + rnorm(n = length(day_1_plants),
+                                     mean = plant_growth_per_day,
+                                     sd = plant_growth_sd)
+print(day_2_plants)
 ```
 
 **Let's remind ourselves of the assumptions in our model so far:**
@@ -131,19 +144,28 @@ Let's first create a dataframe just for the day 0 data.
 # the data for plant heights from day_0_data (hint: check class 5)
 # For simplicity, make plant.id just integers from 1 to sample_size
 # hint: use seq() or just a colon
-
+day_0_df <- data.frame(height = day_0_plants,
+                       day = 0,
+                       plant.id = 1:length(day_0_plants))
+print(day_0_df)
 ```
 
 We can now create a new dataframe for the day 1 data based on the day 0 dataframe
 ```{r}
 # Use day_0_df, as well as the rnorm function and parameters described above, to
 # create a new dataframe, day_1_df
-
+day_1_df <- day_0_df
+day_1_df$height <- day_1_df$height + rnorm(n = length(day_1_df$height),
+                                     mean = plant_growth_per_day,
+                                     sd = plant_growth_sd)
+day_1_df$day <- 1
+print(day_1_df)
 ```
 
 We can combine `day_0_df` and `day_1_df` into a single tidy dataframe by using the `rbind()` (row bind) function, which adds a dataframe to the bottom of another dataframe, as long as they have the same columns.
 ```{r}
 plant_growth_df <- rbind(day_0_df, day_1_df)
+print(plant_growth_df)
 ```
 
 # Writing custom functions
@@ -181,7 +203,7 @@ pythagorean_theorem_fun <- function(side_1, side_2){
 
 # Try running the function above on some test numbers, just as you would any
 # other R function
-
+pythagorean_theorem_fun(3,4)
 ```
 Notice that my function contains a ton of comments, explaining exactly what each of the steps does. Doing this will get you a big, big thank you from your future self!
 
@@ -215,9 +237,25 @@ Let's follow the template above to write a function that takes in a dataframe co
 ```{r}
 # Write a function called grow_plants that adds a day of plant growth to a
 # dataframe containing plant_IDs, plant heights, and growth days
-
+grow_plants <- function(plant_df, current_day, mean_plant_growth, sd_plant_growth){
+  previous_day <- current_day - 1
+  prev_day_df <- subset(plant_df, day == previous_day)
+  new_heights <-
+    prev_day_df$height + 
+    rnorm(n = length(prev_day_df$height),
+          mean = mean_plant_growth,
+          sd = sd_plant_growth)
+  new_day_df <-
+    data.frame(plant.id = prev_day_df$plant.id,
+               height = new_heights,
+               day = current_day)
+  combined_plant_df <- rbind(plant_df, new_day_df)
+  return(combined_plant_df)
+}
 # Run grow_plants on plant_growth_df to add another day to this dataframe
-
+plant_growth_df <-
+  grow_plants(plant_growth_df, 2, plant_growth_per_day, plant_growth_sd)
+print(plant_growth_df)
 ```
 
 ## Saving function scripts
