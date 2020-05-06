@@ -1,10 +1,10 @@
 ---
-title: "Intro R Course, Workshop 8: Basics of programming, and simulation in biology"
+title: "Intro R Course, Workshop 8: Basics of programming, and simulation in biology (Part I)"
 subtitle: |
+    |   - conditional statements
+    |   - simulating biological data (intro)
+    |   - random number generation
     |   - writing your own functions
-    |   - loops
-    |   - if/else statements
-    |   - simulating biological data
 author:
   - Eugene Plavskin
 output:
@@ -17,9 +17,49 @@ output:
 
 The techniques we've learned in the last few workshops are geared towards helping you understand the basics of how to analyze data in R. However, R is a full-fledged programming language, and you can use it to do a lot more than just plot data and run stats.
 
-One technique that can be incredibly helpful in planning experiments, understanding data, and trying out statistical approaches is *simulation*. In many cases, by simulating what we expect our data to look like (ideally before even setting up any experiments), we can quickly figure out confounding factors in experimental design we had not yet thought about; estimate the sample sizes we would need to detect effects that interest us, if they indeed exist; and start to think about and program the statistical analyses we'd have to perform on our real data once we have it.
+One technique that can be incredibly helpful in planning experiments, understanding data, and trying out statistical approaches is *simulation*. In many cases, by simulating what we expect our data to look like (ideally before even setting up any experiments), we can quickly figure out confounding factors in experimental design we had not yet thought about; estimate the sample sizes we would need to detect effects that interest us, if those effects indeed exist; and start to think about and program the statistical analyses we'd have to perform on our real data once we have it.
 
-This final workshop covers some ideas that are fundamental to programming in any language through the lens of simulating the results of an expected experiment. We'll also try to come back to some of the concepts we've already covered, but a key point is that while most of the material in workshops 5-7 is quite specific to R, the ideas we'll cover over will carry over (with some syntax differences) to any other computer language you learn.
+These final workshops cover some ideas that are fundamental to programming in any language through the lens of simulating the expected results of an experiment. We'll also try to come back to some of the concepts we've already covered, but a key point is that while most of the material in workshops 5-7 is quite specific to R, the ideas we'll cover in this workshop will carry over (with some syntax differences) to any other computer language you learn.
+
+# Conditional (If/Else) Statements
+
+One very useful construct in programming is a conditional statement. It allows you to run different things in different situations. This won't really be used in our simulation, but it's really useful in many other contexts. These statements look something like this:
+```{}
+if (some_logical_statement){
+  ...do one thing...
+} else if (some other logical statement){
+  ...do a different thing...
+} else{
+  ...do a third thing...
+}
+```
+These conditional statements can contain just the `if` part, or just the `if` and `else` parts, or any number of `else if` statements in the middle.
+
+They look something like this:
+```{r}
+best_plant <- 'moss'
+
+if (best_plant == 'moss'){
+  print("Bryophytes forever")
+}else{
+  print("You're mistaken")
+}
+```
+Try changing the value of the `best_plant` variable above and re-running the code.
+
+Importantly, these chains of statements are evaluated top to bottom, and once one part is found to be true, the rest is not run. Take a look at this example:
+```{r}
+current_value <- 8
+
+if (current_value > 6){
+  print('Greater than 6')
+} else if (current_value > 4){
+  print("Greater than 4, but not 6!")
+} else{
+  print("Less than or equal to 4")
+}
+```
+Notice that if we set current_value to 8, even though that's both greater than 6 AND 4, only the first statement prints. This is what the `else` part of the `else if` is doing.
 
 # Simulation experiment setup
 
@@ -29,12 +69,12 @@ We've been working with the iris dataset throughout this course, so let's stick 
 
 Let's start simple, and try to just perform a very simple digital plant growth experiment, with no salt treatment for now. We can start our virtual plants as seeds at timepoint *t0*, and record their height in centimeters in a vector. Here, we need to make a key first decision: sample size!
 
-Let's decide our sample size is 3 for now. One way we can make our initial vector is by just writing out the starting heights.
+Let's decide our sample size is 3 for now. One (not great) way we can make our initial vector is by just writing out the starting heights.
 ```{r}
 not_great_day_0_plants <- c(0, 0, 0)
 ```
 
-Why is this not great? Well, what if we want to start with a *much* larger sample size? Or, what if we want to be able to easily change the sample size in our experiment, as we'll want to do later? Instead, we can declare the sample size as a variable, and use the `rep()` function, which repeats a vector (or single string/number) a specified number of times, to create this initial vector.
+Why is this not great? Well, what if we want to start with a *much* larger sample size? Or, what if we want to be able to easily change the sample size in our experiment, as we'll want to do later? Instead, we can declare the sample size as a variable, and use the `rep()` function, which repeats a vector (or single string/number) a specified number of times, to create this initial vector. (A note for your future programmer self: `rep()` can be used to repeat both individual elements in a vector and a whole vector, and can come in quite useful.)
 ```{r}
 # declare sample size
 sample_size <- 3
@@ -57,7 +97,7 @@ plant_growth_per_day <- 0.5
 
 This model, in which each plant grows identically by the same amount every day, hardly seems realistic or useful. Maybe a more realistic model is that each plant grows some amount on average, but with random noise in each plant's growth amount. R can easily simulate randomly drawn numbers from a large number of distributions, with the format `r{distribution name abbreviation}({sample_number_to_draw}, {distribution parameters})`, where the 'r' at the beginning stands for 'random': for example, for random samples from a normal distribution, we can use `rnorm({sample_number_to_draw}, {mean}, {standard_deviation})`, for a binomial distribution `rbinom({sample_number_to_draw}, {num_trials}, {trial_probability})`, etc. The documentation for these functions in R is usually quite helpful.
 
-We'll use a Normal distribution to model growth here, even though that's really not a good idea in general, since that can result in negative growth amounts. **Thinking about what the noise in your data might realistically look like is key for both running your simulations and running statistical models on your data!**
+We'll use a Normal distribution to model growth here, even though that's really not a good idea in general, since that can result in negative growth amounts. **Thinking about what the noise in your data might realistically look like is key for both running your simulations and running statistical analysis on your data!**
 
 ```{r}
 # specify the standard deviation of daily plant growth
@@ -122,7 +162,7 @@ my_function_name <- function(input_1, input_2){
 ```
 Notice that you're assigning the function to a function name you make up, just like you'd assign a variable. The variable names in parentheses after `function` are inputs into your function; these will be used as variables inside the function code. Then you open a curly brace `{`, write out the code of your function, and end it with a `return()`. Although functions in R will work without a `return()`, their behavior will be unclear and maybe difficult to predict, so I really suggest not forgetting to include this line (once!) at the end of every function.
 
-Also, note that the code inside your function can work just like any other code: you can declare variables, run other function (either built-in, or ones you've already declared earlier), etc. The caveat, though, is that the only variables you should assume the function has access to at the start are the input variables specified in your parentheses. **Think of a function as a completely closed box that can only communicate with the rest of your code via the input(s) you pass into it, and the output(s) it returns.**
+Also, note that the code inside your function can work just like any other code: you can declare variables, run other functions (either built-in, or ones you've already declared earlier), etc. The caveat, though, is that the only variables you should assume the function has access to at the start are the input variables specified in your parentheses. **Think of a function as a completely closed box that can only communicate with the rest of your code via the input(s) you pass into it, and the output(s) it returns.**
 
 Here's a function that finds the hypotenuse of a right triangle. It needs to take two inputs and add their squares, and then return the square root of the result.
 ```{r}
@@ -142,6 +182,7 @@ pythagorean_theorem_fun <- function(side_1, side_2){
 # other R function
 
 ```
+Notice that my function contains a ton of comments, explaining exactly what each of the steps does. Doing this will get you a big, big thank you from your future self!
 
 One really key thing to remember, especially in R, is to be careful about naming variables inside this function. **You want to avoid declaring a function in which some variables are called the same thing as variables you already have loaded into your workspace**: this could cause the source of any errors in your function to be incredibly difficult to track down. So, be creative about your variable names.
 
@@ -176,108 +217,25 @@ Let's follow the template above to write a function that takes in a dataframe co
 
 ```
 
-## Testing functions
+## Saving function scripts
 
-One really key thing is to really test any new functions extensively. It is **incredibly** easy to make a mistake in coding (think about all the typos you've ever made, except this time they can critically affect the results of your data analysis). The solution to this is testing any code you write to death, and if possible, having another coder familiar with what you're doing look over it (which means always including tons of comments!)
+Let's save our `grow_plants()` function to its own separate script so we can use it again next time.
+
+1. Click on File -> New File -> R Script. A new tab should appear in Rstudio.
+
+2. Take the entire grow_plants function (including the part where you assign the function to the `grow_plants` variable), copy it, and paste it into the newly opened script.
+
+3. Click on File -> Save As, and save your function somewhere on your computer (probably best to do this in the directory where you are saving your notebooks for this course). You can name the file anything you want (it should have a *.R* extension), but I suggest naming files that hold functions after the functions themselves, i.e. *grow_plants.R*.
+
+4. To test that this worked, clear everything in your environment using the little broom at the top right corner of your screen. Then, run the `source()` command with the full path to *grow_plants.R* as the argument
 ```{r}
-# Test your function on plant_growth_df, adding a third day of growth and
-# checking that the results look like you'd expect
-
-# First, test what happens if you set the mean and standard deviation of the
-# daily growth amount to 0
-
-# Next, set the mean to a non-0 number, but the standard deviation to 0
-
-# Finally, try growing the plants with a non-0 mean and standard deviation
-# (e.g. plant_growth_per_day and plant_growth_sd from above)
-
+# something like this
+source('~/Documents/Teaching/Intro_R_Course/grow_plants.R')
 ```
 
-Another great sanity check in coding anything related to data is plotting. Try making a plot of your data, plotting height vs day for all the plants.
-```{r}
-# Plot plant_growth_df
+5. Check that the `grow_plants()` function has appeared in your Environment. You can try rerunning it using the code above
 
-# If you want to include lines on your plot, you will have to include a "group"
-# parameter in your mapping (i.e. "group = plant.id"); this separates the data
-# by the category (or categories) you specify, without giving it a special color,
-# shape, or associated legend
 
-```
 
-# Loops
 
-## Introduction to loops
-
-We now have a function that allows us to 'grow' the plants in our dataframe in a single line, just by providing the growth parameters. However, this doesn't actually solve our problem of trying to model the growth of these plants over long periods of time. We ideally want to avoid running this model by hand 30 times.
-
-Instead, we can use something called a "loop". These are an incredibly fundamental idea in programming, and they allow you to easily repeat a task multiple times.
-
-### `for` loops
-The most commonly used type of loop is a 'for' loop. Imagine we have some list (e.g. a consecutive list of days). The loop takes a variable and takes turns assigning every value from the list to it, in order, and then doing something with the variable. Here's how they look in R:
-```{}
-for (variable_from_list in some_list){
-  # do some stuff using variable_from_list
-}
-```
-Note that unlike functions, loops are *not* closed-off boxes: in addition to variable_from_list, they have access to all the previously specified variables in R, and they can modify these variables.
-
-Let's try an example: we can write a loop that starts with a vector of numbers, and produces an output vector of those numbers squared.
-```{r}
-# numbers to loop through
-initial_vector <- c(0, 3, -2, 4, 15)
-
-# need to initialize an empty vector into which we will put the solutions in
-# each loop round
-squares_vector <- c()
-
-# loop over initial_vector, and populate square_vector
-for(current_number in initial_vector){
-  # notice that current_number will take turns holding every value of initial_vector
-  current_number_squared <- current_number^2
-  # add current_number_squared to the end of squares_vector
-  squares_vector <- c(squares_vector, current_number_squared)
-}
-print(squares_vector)
-```
-Of course, you don't need a loop to do the above; simply running `initial_vector^2` would have worked. In fact, running this kind of operation in the loop we wrote takes *much* longer than the alternative. However, there are many cases (like our plant growth problem) where loops are the only way to do something.
-
-### `while` loops
-
-There's also another kind of loop, a 'while' loop. Rather than going through a vector of pre-defined length, while loops check that some condition is true, and only continue *while* that is the case.
-
-Here's a while loop that subtracts 2 from a number and prints the result, stopping only when the result is equal to 0.
-```{r}
-# initialize the while loop
-number <- 8
-while (number != 0){
-  number <- number - 2
-  print(number)
-}
-```
-`while()` loops are tricky, however. If you don't think carefully about your starting condition, you can end up in an endless loop. For example, try changing the initial value of `number` to 7 in the loop above.
-
-**Hint**: You can press inside your console and hold down `ctrl-c` to end the execution of any R code.
-
-## Coding plant growth in a loop
-
-Now that we know how to write loops, try to write some code that makes a new dataframe, plant_growth_df_2, and then uses a loop running the grow_plants function to loop through 30 days of plant growth.
-```{r}
-# Initialize plant_growth_df_2
-
-# Loop through days 1-30, adding to plant growth
-```
-
-# Using coding in science
-
-I wanted to share some final resources that I think are great places to look to keep going with learning to code.
-
-* [SoftwareCarpentry](https://software-carpentry.org/lessons/): Sets of lessons on the coding, mostly at an introductory/early intermediate level. Lots of overlap with this course in the R sections, but presented in a different way; also courses in Python, Unix, and really useful tools like GitHub
-
-* [Jenny Bryan's UBC's STAT545 course](https://stat545.com/): walks you through intro- and intermediate-level R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want a more in-depth course about R in general, I highly recommend this.
-
-If you're planning to spend a lot of time coding (i.e. not just a one-off analysis, but more long-term projects), the following articles are great sources for thinking about what to aspire to. They can be daunting if you try to achieve all their suggestions at once, but I think as they both try to point out, a better idea is understanding what good, reproducible coding looks like and then slowly building more and more of these practices into your work as you grow. Few coding projects in biology manage to achieve *everything* outlined here, but these articles provide an excellent long-term roadmap as you become a better coder.
-
-* [Parker, Hillary. (2017) Opinionated Analaysis Development *PeerJ Preprints 5:e3210v1*](https://peerj.com/preprints/3210/)
-
-* [Wilson, Greg *et al.* (2017) Good enough practices in scientific computing. *PLOS Computational Biology 13(6): e1005510*](https://doi.org/10.1371/journal.pcbi.1005510)
 
