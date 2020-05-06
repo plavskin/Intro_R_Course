@@ -1758,16 +1758,9 @@ summary {
 <li><a href="#conditional-ifelse-statements">Conditional (If/Else) Statements</a></li>
 <li><a href="#simulation-experiment-setup">Simulation experiment setup</a><ul>
 <li><a href="#using-variables-to-set-up-simulations">Using variables to set up simulations</a></li>
-</ul></li>
-<li><a href="#create-a-new-vector-day_1_plants-in-which-each-of-the-plants-grows-by">create a new vector, day_1_plants, in which each of the plants grows by</a></li>
-<li><a href="#plant_growth_per_day">plant_growth_per_day</a></li>
-<li><a href="#create-a-new-vector-day_2_plants-using-day_1_plants-plant_growth_per_day">create a new vector, day_2_plants, using day_1_plants, plant_growth_per_day,</a></li>
-<li><a href="#plant_growth_sd-and-the-rnorm-function">plant_growth_sd, and the rnorm() function</a><ul>
 <li><a href="#simulation-using-randomly-drawn-numbers">Simulation using randomly drawn numbers</a></li>
 <li><a href="#saving-simulation-results-into-a-dataframe">Saving simulation results into a dataframe</a></li>
 </ul></li>
-<li><a href="#try-running-the-function-above-on-some-test-numbers-just-as-you-would-any">Try running the function above on some test numbers, just as you would any</a></li>
-<li><a href="#other-r-function">other R function</a></li>
 <li><a href="#writing-custom-functions">Writing custom functions</a><ul>
 <li><a href="#simple-function-example">Simple function example</a></li>
 <li><a href="#writing-a-function-for-plant-growth">Writing a function for plant growth</a></li>
@@ -1795,9 +1788,14 @@ summary {
 <p>They look something like this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuY3VycmVudF92YWx1ZSA8LSA4XG5cbmlmIChjdXJyZW50X3ZhbHVlID4gNil7XG4gIHByaW50KCdHcmVhdGVyIHRoYW4gNicpXG59IGVsc2UgaWYgKGN1cnJlbnRfdmFsdWUgPiA0KXtcbiAgcHJpbnQoXFxHcmVhdGVyIHRoYW4gNFxuYGBgIn0= -->
-<p><code>r</code>r current_value &lt;- 8</p>
-<p>if (current_value &gt; 6){ print(‘Greater than 6’) } else if (current_value &gt; 4){ print(than 4 ```</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmVzdF9wbGFudCA8LSAnbW9zcydcblxuaWYgKGJlc3RfcGxhbnQgPT0gJ21vc3MnKXtcbiAgcHJpbnQoXCJCcnlvcGh5dGVzIGZvcmV2ZXJcIilcbn1lbHNle1xuICBwcmludChcIllvdSdyZSBtaXN0YWtlblwiKVxufVxuYGBgIn0= -->
+<pre class="r"><code>best_plant &lt;- 'moss'
+
+if (best_plant == 'moss'){
+  print(&quot;Bryophytes forever&quot;)
+}else{
+  print(&quot;You're mistaken&quot;)
+}</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1805,9 +1803,16 @@ summary {
 <p>Importantly, these chains of statements are evaluated top to bottom, and once one part is found to be true, the rest is not run. Take a look at this example:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubm90X2dyZWF0X2RheV8wX3BsYW50cyA8LSBjKDAsIDAsIDApXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r not_great_day_0_plants &lt;- c(0, 0, 0)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3VycmVudF92YWx1ZSA8LSA4XG5cbmlmIChjdXJyZW50X3ZhbHVlID4gNil7XG4gIHByaW50KCdHcmVhdGVyIHRoYW4gNicpXG59IGVsc2UgaWYgKGN1cnJlbnRfdmFsdWUgPiA0KXtcbiAgcHJpbnQoXCJHcmVhdGVyIHRoYW4gNCwgYnV0IG5vdCA2IVwiKVxufSBlbHNle1xuICBwcmludChcIkxlc3MgdGhhbiBvciBlcXVhbCB0byA0XCIpXG59XG5gYGAifQ== -->
+<pre class="r"><code>current_value &lt;- 8
+
+if (current_value &gt; 6){
+  print('Greater than 6')
+} else if (current_value &gt; 4){
+  print(&quot;Greater than 4, but not 6!&quot;)
+} else{
+  print(&quot;Less than or equal to 4&quot;)
+}</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1822,52 +1827,50 @@ summary {
 <p>Let’s decide our sample size is 3 for now. One (not great) way we can make our initial vector is by just writing out the starting heights.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBkZWNsYXJlIHNhbXBsZSBzaXplXG5zYW1wbGVfc2l6ZSA8LSAzXG4jIGNyZWF0ZSBhIHZlY3RvciBpbiB3aGljaCAwIGlzIHJlcGF0ZWQgc2FtcGxlX3NpemUgdGltZXNcbmRheV8wX3BsYW50cyA8LSByZXAoMCwgc2FtcGxlX3NpemUpXG5wcmludChkYXlfMF9wbGFudHMpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # declare sample size sample_size &lt;- 3 # create a vector in which 0 is repated sample_size times day_0_plants &lt;- rep(0, sample_size) print(day_0_plants)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubm90X2dyZWF0X2RheV8wX3BsYW50cyA8LSBjKDAsIDAsIDApXG5gYGAifQ== -->
+<pre class="r"><code>not_great_day_0_plants &lt;- c(0, 0, 0)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Why is this not great? Well, what if we want to start with a <em>much</em> larger sample size? Or, what if we want to be able to easily change the sample size in our experiment, as we’ll want to do later? Instead, we can declare the sample size as a variable, and use the <code>rep()</code> function, which repeats a vector (or single string/number) a specified number of times, to create this initial vector. (A note for your future programmer self: <code>rep()</code> can be used to repeat both individual elements in a vector and a whole vector, and can come in quite useful.)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzcGVjaWZ5IHBsYW50IGdyb3d0aCBwZXIgdGltZXBvaW50XG5wbGFudF9ncm93dGhfcGVyX2RheSA8LSAwLjVcblxuIyBjcmVhdGUgYSBuZXcgdmVjdG9yLCBkYXlfMV9wbGFudHMsIGluIHdoaWNoIGVhY2ggb2YgdGhlIHBsYW50cyBncm93cyBieVxuIyBwbGFudF9ncm93dGhfcGVyX2RheVxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # specify plant growth per timepoint plant_growth_per_day &lt;- 0.5</p>
-</div>
-</div>
-<div id="create-a-new-vector-day_1_plants-in-which-each-of-the-plants-grows-by" class="section level1">
-<h1>create a new vector, day_1_plants, in which each of the plants grows by</h1>
-</div>
-<div id="plant_growth_per_day" class="section level1">
-<h1>plant_growth_per_day</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkZWNsYXJlIHNhbXBsZSBzaXplXG5zYW1wbGVfc2l6ZSA8LSAzXG4jIGNyZWF0ZSBhIHZlY3RvciBpbiB3aGljaCAwIGlzIHJlcGF0ZWQgc2FtcGxlX3NpemUgdGltZXNcbmRheV8wX3BsYW50cyA8LSByZXAoMCwgc2FtcGxlX3NpemUpXG5wcmludChkYXlfMF9wbGFudHMpXG5gYGAifQ== -->
+<pre class="r"><code># declare sample size
+sample_size &lt;- 3
+# create a vector in which 0 is repated sample_size times
+day_0_plants &lt;- rep(0, sample_size)
+print(day_0_plants)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>OK, now let’s try to make our plants grow. Here, we need to decide how many centimeters our plants are growing each day!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzcGVjaWZ5IHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgZGFpbHkgcGxhbnQgZ3Jvd3RoXG5wbGFudF9ncm93dGhfc2QgPC0gMC4xXG5cbiMgY3JlYXRlIGEgbmV3IHZlY3RvciwgZGF5XzJfcGxhbnRzLCB1c2luZyBkYXlfMV9wbGFudHMsIHBsYW50X2dyb3d0aF9wZXJfZGF5LFxuIyBwbGFudF9ncm93dGhfc2QsIGFuZCB0aGUgcm5vcm0oKSBmdW5jdGlvblxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # specify the standard deviation of daily plant growth plant_growth_sd &lt;- 0.1</p>
-</div>
-<div id="create-a-new-vector-day_2_plants-using-day_1_plants-plant_growth_per_day" class="section level1">
-<h1>create a new vector, day_2_plants, using day_1_plants, plant_growth_per_day,</h1>
-</div>
-<div id="plant_growth_sd-and-the-rnorm-function" class="section level1">
-<h1>plant_growth_sd, and the rnorm() function</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcGVjaWZ5IHBsYW50IGdyb3d0aCBwZXIgdGltZXBvaW50XG5wbGFudF9ncm93dGhfcGVyX2RheSA8LSAwLjVcblxuIyBjcmVhdGUgYSBuZXcgdmVjdG9yLCBkYXlfMV9wbGFudHMsIGluIHdoaWNoIGVhY2ggb2YgdGhlIHBsYW50cyBncm93cyBieVxuIyBwbGFudF9ncm93dGhfcGVyX2RheVxuXG5gYGAifQ== -->
+<pre class="r"><code># specify plant growth per timepoint
+plant_growth_per_day &lt;- 0.5
+
+# create a new vector, day_1_plants, in which each of the plants grows by
+# plant_growth_per_day
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 <div id="simulation-using-randomly-drawn-numbers" class="section level2">
 <h2>Simulation using randomly drawn numbers</h2>
 <p>This model, in which each plant grows identically by the same amount every day, hardly seems realistic or useful. Maybe a more realistic model is that each plant grows some amount on average, but with random noise in each plant’s growth amount. R can easily simulate randomly drawn numbers from a large number of distributions, with the format <code>r{distribution name abbreviation}({sample_number_to_draw}, {distribution parameters})</code>, where the ‘r’ at the beginning stands for ‘random’: for example, for random samples from a normal distribution, we can use <code>rnorm({sample_number_to_draw}, {mean}, {standard_deviation})</code>, for a binomial distribution <code>rbinom({sample_number_to_draw}, {num_trials}, {trial_probability})</code>, etc. The documentation for these functions in R is usually quite helpful.</p>
 <p>We’ll use a Normal distribution to model growth here, even though that’s really not a good idea in general, since that can result in negative growth amounts. <strong>Thinking about what the noise in your data might realistically look like is key for both running your simulations and running statistical analysis on your data!</strong></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDcmVhdGUgYSBuZXcgZGF0YWZyYW1lLCBkYXlfMF9kZiwgY29udGFpbmluZyB0aGUgY29sdW1ucyBkZXNjcmliZWQgYWJvdmUsIGFuZFxuIyB0aGUgZGF0YSBmb3IgcGxhbnQgaGVpZ2h0cyBmcm9tIGRheV8wX2RhdGEgKGhpbnQ6IGNoZWNrIGNsYXNzIDUpXG4jIEZvciBzaW1wbGljaXR5LCBtYWtlIHBsYW50LmlkIGp1c3QgaW50ZWdlcnMgZnJvbSAxIHRvIHNhbXBsZV9zaXplXG4jIGhpbnQ6IHVzZSBzZXEoKSBvciBqdXN0IGEgY29sb25cblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # Create a new dataframe, day_0_df, containing the columns described above, and # the data for plant heights from day_0_data (hint: check class 5) # For simplicity, make plant.id just integers from 1 to sample_size # hint: use seq() or just a colon</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzcGVjaWZ5IHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgZGFpbHkgcGxhbnQgZ3Jvd3RoXG5wbGFudF9ncm93dGhfc2QgPC0gMC4xXG5cbiMgY3JlYXRlIGEgbmV3IHZlY3RvciwgZGF5XzJfcGxhbnRzLCB1c2luZyBkYXlfMV9wbGFudHMsIHBsYW50X2dyb3d0aF9wZXJfZGF5LFxuIyBwbGFudF9ncm93dGhfc2QsIGFuZCB0aGUgcm5vcm0oKSBmdW5jdGlvblxuXG5gYGAifQ== -->
+<pre class="r"><code># specify the standard deviation of daily plant growth
+plant_growth_sd &lt;- 0.1
+
+# create a new vector, day_2_plants, using day_1_plants, plant_growth_per_day,
+# plant_growth_sd, and the rnorm() function
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1887,37 +1890,34 @@ summary {
 <p>Let’s first create a dataframe just for the day 0 data.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBVc2UgcGxhbnQuaWQgYW5kIGhlaWdodCBjb2x1bW5zIGZyb20gZGF5XzBfZGYsIGFzIHdlbGwgYXMgdGhlIHJub3JtIGZ1bmN0aW9uXG4jIGFuZCBwYXJhbWV0ZXJzIGRlc2NyaWJlZCBhYm92ZSwgdG8gY3JlYXRlIGEgbmV3IGRhdGFmcmFtZSwgZGF5XzFfZGZcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # Use plant.id and height columns from day_0_df, as well as the rnorm function # and parameters described above, to create a new dataframe, day_1_df</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSBuZXcgZGF0YWZyYW1lLCBkYXlfMF9kZiwgY29udGFpbmluZyB0aGUgY29sdW1ucyBkZXNjcmliZWQgYWJvdmUsIGFuZFxuIyB0aGUgZGF0YSBmb3IgcGxhbnQgaGVpZ2h0cyBmcm9tIGRheV8wX2RhdGEgKGhpbnQ6IGNoZWNrIGNsYXNzIDUpXG4jIEZvciBzaW1wbGljaXR5LCBtYWtlIHBsYW50LmlkIGp1c3QgaW50ZWdlcnMgZnJvbSAxIHRvIHNhbXBsZV9zaXplXG4jIGhpbnQ6IHVzZSBzZXEoKSBvciBqdXN0IGEgY29sb25cblxuYGBgIn0= -->
+<pre class="r"><code># Create a new dataframe, day_0_df, containing the columns described above, and
+# the data for plant heights from day_0_data (hint: check class 5)
+# For simplicity, make plant.id just integers from 1 to sample_size
+# hint: use seq() or just a colon
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We can now create a new dataframe for the day 1 data based on the day 0 dataframe</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGxhbnRfZ3Jvd3RoX2RmIDwtIHJiaW5kKGRheV8wX3BsYW50cywgZGF5XzFfcGxhbnRzKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r plant_growth_df &lt;- rbind(day_0_plants, day_1_plants)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2UgZGF5XzBfZGYsIGFzIHdlbGwgYXMgdGhlIHJub3JtIGZ1bmN0aW9uIGFuZCBwYXJhbWV0ZXJzIGRlc2NyaWJlZCBhYm92ZSwgdG9cbiMgY3JlYXRlIGEgbmV3IGRhdGFmcmFtZSwgZGF5XzFfZGZcblxuYGBgIn0= -->
+<pre class="r"><code># Use day_0_df, as well as the rnorm function and parameters described above, to
+# create a new dataframe, day_1_df
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We can combine <code>day_0_df</code> and <code>day_1_df</code> into a single tidy dataframe by using the <code>rbind()</code> (row bind) function, which adds a dataframe to the bottom of another dataframe, as long as they have the same columns.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgYSBmdW5jdGlvbiB0aGF0IGNhbGN1bGF0ZXMgdGhlIGxlbmd0aCBvZiB0aGUgaHlwb3RlbnVzZSBvZiBhIHJpZ2h0XG4jIHRyaWFuZ2xlXG5weXRoYWdvcmVhbl90aGVvcmVtX2Z1biA8LSBmdW5jdGlvbihzaWRlXzEsIHNpZGVfMil7XG4gICMgc3F1YXJlIGVhY2ggb2YgdGhlIHRyaWFuZ2xlIHNpZGVzIGFuZCBhZGQgdGhlbVxuICBoeXBvdGVudXNlX3NxdWFyZWQgPC0gc2lkZV8xXjIgKyBzaWRlXzJeMlxuICAjIHRha2UgdGhlIHNxdWFyZSByb290IG9mIHRoZSBzdW0gb2Ygc3F1YXJlZCBzaWRlc1xuICBoeXBvdGVudXNlIDwtIHNxcnQoaHlwb3RlbnVzZV9zcXVhcmVkKVxuICAjIGRvbid0IGZvcmdldCB0byB0ZWxsIFIgd2hpY2ggb2YgdGhlIHZhcmlhYmxlcyBjcmVhdGVkIGluc2lkZSB0aGlzIGZ1bmN0aW9uXG4gICMgeW91IHdhbnQgaXQgdG8gb3V0cHV0IVxuICByZXR1cm4oaHlwb3RlbnVzZSlcbn1cblxuIyBUcnkgcnVubmluZyB0aGUgZnVuY3Rpb24gYWJvdmUgb24gc29tZSB0ZXN0IG51bWJlcnMsIGp1c3QgYXMgeW91IHdvdWxkIGFueVxuIyBvdGhlciBSIGZ1bmN0aW9uXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # create a function that calculates the length of the hypotenuse of a right # triangle pythagorean_theorem_fun &lt;- function(side_1, side_2){ # square each of the triangle sides and add them hypotenuse_squared &lt;- side_1^2 + side_2^2 # take the square root of the sum of squared sides hypotenuse &lt;- sqrt(hypotenuse_squared) # don’t forget to tell R which of the variables created inside this function # you want it to output! return(hypotenuse) }</p>
-</div>
-</div>
-<div id="try-running-the-function-above-on-some-test-numbers-just-as-you-would-any" class="section level1">
-<h1>Try running the function above on some test numbers, just as you would any</h1>
-</div>
-<div id="other-r-function" class="section level1">
-<h1>other R function</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxhbnRfZ3Jvd3RoX2RmIDwtIHJiaW5kKGRheV8wX2RmLCBkYXlfMV9kZilcbmBgYCJ9 -->
+<pre class="r"><code>plant_growth_df &lt;- rbind(day_0_df, day_1_df)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 </div>
 <div id="writing-custom-functions" class="section level1">
 <h1>Writing custom functions</h1>
@@ -1936,9 +1936,22 @@ summary {
 <p>Here’s a function that finds the hypotenuse of a right triangle. It needs to take two inputs and add their squares, and then return the square root of the result.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBzb21ldGhpbmcgbGlrZSB0aGlzXG5zb3VyY2UoJ34vRG9jdW1lbnRzL1RlYWNoaW5nL0ludHJvX1JfQ291cnNlL2dyb3dfcGxhbnRzLlInKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # something like this source(‘~/Documents/Teaching/Intro_R_Course/grow_plants.R’)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjcmVhdGUgYSBmdW5jdGlvbiB0aGF0IGNhbGN1bGF0ZXMgdGhlIGxlbmd0aCBvZiB0aGUgaHlwb3RlbnVzZSBvZiBhIHJpZ2h0XG4jIHRyaWFuZ2xlXG5weXRoYWdvcmVhbl90aGVvcmVtX2Z1biA8LSBmdW5jdGlvbihzaWRlXzEsIHNpZGVfMil7XG4gICMgc3F1YXJlIGVhY2ggb2YgdGhlIHRyaWFuZ2xlIHNpZGVzIGFuZCBhZGQgdGhlbVxuICBoeXBvdGVudXNlX3NxdWFyZWQgPC0gc2lkZV8xXjIgKyBzaWRlXzJeMlxuICAjIHRha2UgdGhlIHNxdWFyZSByb290IG9mIHRoZSBzdW0gb2Ygc3F1YXJlZCBzaWRlc1xuICBoeXBvdGVudXNlIDwtIHNxcnQoaHlwb3RlbnVzZV9zcXVhcmVkKVxuICAjIGRvbid0IGZvcmdldCB0byB0ZWxsIFIgd2hpY2ggb2YgdGhlIHZhcmlhYmxlcyBjcmVhdGVkIGluc2lkZSB0aGlzIGZ1bmN0aW9uXG4gICMgeW91IHdhbnQgaXQgdG8gb3V0cHV0IVxuICByZXR1cm4oaHlwb3RlbnVzZSlcbn1cblxuIyBUcnkgcnVubmluZyB0aGUgZnVuY3Rpb24gYWJvdmUgb24gc29tZSB0ZXN0IG51bWJlcnMsIGp1c3QgYXMgeW91IHdvdWxkIGFueVxuIyBvdGhlciBSIGZ1bmN0aW9uXG5cbmBgYCJ9 -->
+<pre class="r"><code># create a function that calculates the length of the hypotenuse of a right
+# triangle
+pythagorean_theorem_fun &lt;- function(side_1, side_2){
+  # square each of the triangle sides and add them
+  hypotenuse_squared &lt;- side_1^2 + side_2^2
+  # take the square root of the sum of squared sides
+  hypotenuse &lt;- sqrt(hypotenuse_squared)
+  # don't forget to tell R which of the variables created inside this function
+  # you want it to output!
+  return(hypotenuse)
+}
+
+# Try running the function above on some test numbers, just as you would any
+# other R function
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
